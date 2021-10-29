@@ -18,9 +18,21 @@
     <ClCompile Include="AuthorisationForm.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="HomeForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RegistrationForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuthorisationForm.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HomeForm.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RegistrationForm.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

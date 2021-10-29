@@ -119,15 +119,29 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AuthorisationForm.cpp" />
+    <ClCompile Include="HomeForm.cpp" />
+    <ClCompile Include="RegistrationForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuthorisationForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="HomeForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="RegistrationForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="AuthorisationForm.resx">
       <DependentUpon>AuthorisationForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HomeForm.resx">
+      <DependentUpon>HomeForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegistrationForm.resx">
+      <DependentUpon>RegistrationForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

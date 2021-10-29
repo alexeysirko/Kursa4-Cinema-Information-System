@@ -1,4 +1,6 @@
 #pragma once
+#include "HomeForm.h"
+//#include "RegistrationForm.h"
 #include <string>
 
 namespace Kursa4 {
@@ -213,7 +215,11 @@ namespace Kursa4 {
 	}
 	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
+private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) 
+{
+	RegistrationForm^ registrationForm = gcnew RegistrationForm();
+	registrationForm->Show();
+	AuthorisationForm::Hide();
 }
 
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
@@ -230,6 +236,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		   else
 		   {
 			   MessageBox::Show(this, "Вы ввели неверный логин или пароль!", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			   return false;
 		   }
 	   }
 
@@ -240,9 +247,12 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 
 	if (AreLoginAndPasswordCorrect(login, password))
 	{
-		//Новое окно
+		HomeForm^ homeForm = gcnew HomeForm();
+		homeForm->Show();
+		AuthorisationForm::Hide();
 	}
 }
+
 private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
