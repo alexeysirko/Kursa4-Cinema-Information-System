@@ -10,7 +10,7 @@ namespace Kursa4 {
 	using namespace System::Drawing;
 
 	/// <summary>
-	/// Summary for RegistrationForm
+	/// Summary for RegistrationFormmmmm!
 	/// </summary>
 	public ref class RegistrationForm : public System::Windows::Forms::Form
 	{
@@ -34,21 +34,18 @@ namespace Kursa4 {
 				delete components;
 			}
 		}
+	private: System::Windows::Forms::TextBox^ repeatPasswordTextBox;
+	protected:
+	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::Button^ registrationButton;
 	private: System::Windows::Forms::LinkLabel^ haveAnAccountLink;
-	protected:
-
-	protected:
-
 	private: System::Windows::Forms::TextBox^ passwordTextBox;
-
 	private: System::Windows::Forms::TextBox^ loginTextBox;
 	private: System::Windows::Forms::Label^ PasswordLabel;
 	private: System::Windows::Forms::Label^ LoginLabel;
 	private: System::Windows::Forms::Label^ RegLabel;
-	private: System::Windows::Forms::TextBox^ repeatPasswordTextBox;
 
-	private: System::Windows::Forms::Label^ label1;
+	protected:
 
 	private:
 		/// <summary>
@@ -63,6 +60,8 @@ namespace Kursa4 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->repeatPasswordTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->registrationButton = (gcnew System::Windows::Forms::Button());
 			this->haveAnAccountLink = (gcnew System::Windows::Forms::LinkLabel());
 			this->passwordTextBox = (gcnew System::Windows::Forms::TextBox());
@@ -70,19 +69,39 @@ namespace Kursa4 {
 			this->PasswordLabel = (gcnew System::Windows::Forms::Label());
 			this->LoginLabel = (gcnew System::Windows::Forms::Label());
 			this->RegLabel = (gcnew System::Windows::Forms::Label());
-			this->repeatPasswordTextBox = (gcnew System::Windows::Forms::TextBox());
-			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
+			// 
+			// repeatPasswordTextBox
+			// 
+			this->repeatPasswordTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->repeatPasswordTextBox->Location = System::Drawing::Point(238, 226);
+			this->repeatPasswordTextBox->Name = L"repeatPasswordTextBox";
+			this->repeatPasswordTextBox->Size = System::Drawing::Size(367, 31);
+			this->repeatPasswordTextBox->TabIndex = 26;
+			this->repeatPasswordTextBox->UseWaitCursor = true;
+			// 
+			// label1
+			// 
+			this->label1->AutoSize = true;
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label1->Location = System::Drawing::Point(51, 226);
+			this->label1->Name = L"label1";
+			this->label1->Size = System::Drawing::Size(181, 25);
+			this->label1->TabIndex = 25;
+			this->label1->Text = L"Задайте Пароль:";
+			this->label1->UseWaitCursor = true;
 			// 
 			// registrationButton
 			// 
 			this->registrationButton->BackColor = System::Drawing::Color::Green;
 			this->registrationButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->registrationButton->Location = System::Drawing::Point(312, 287);
+			this->registrationButton->Location = System::Drawing::Point(290, 299);
 			this->registrationButton->Name = L"registrationButton";
 			this->registrationButton->Size = System::Drawing::Size(281, 53);
-			this->registrationButton->TabIndex = 15;
+			this->registrationButton->TabIndex = 24;
 			this->registrationButton->Text = L"Зарегестрироваться";
 			this->registrationButton->UseVisualStyleBackColor = false;
 			this->registrationButton->UseWaitCursor = true;
@@ -92,33 +111,33 @@ namespace Kursa4 {
 			this->haveAnAccountLink->AutoSize = true;
 			this->haveAnAccountLink->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->haveAnAccountLink->Location = System::Drawing::Point(351, 370);
+			this->haveAnAccountLink->Location = System::Drawing::Point(329, 382);
 			this->haveAnAccountLink->Name = L"haveAnAccountLink";
 			this->haveAnAccountLink->Size = System::Drawing::Size(201, 20);
-			this->haveAnAccountLink->TabIndex = 13;
+			this->haveAnAccountLink->TabIndex = 23;
 			this->haveAnAccountLink->TabStop = true;
 			this->haveAnAccountLink->Text = L"Уже есть аккаунт\? Войти";
 			this->haveAnAccountLink->UseWaitCursor = true;
-			this->haveAnAccountLink->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &RegistrationForm::NoAccountLink_LinkClicked);
+			this->haveAnAccountLink->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &RegistrationForm::haveAnAccountLink_LinkClicked);
 			// 
 			// passwordTextBox
 			// 
 			this->passwordTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->passwordTextBox->Location = System::Drawing::Point(260, 156);
+			this->passwordTextBox->Location = System::Drawing::Point(238, 168);
 			this->passwordTextBox->Name = L"passwordTextBox";
 			this->passwordTextBox->Size = System::Drawing::Size(367, 31);
-			this->passwordTextBox->TabIndex = 12;
+			this->passwordTextBox->TabIndex = 22;
 			this->passwordTextBox->UseWaitCursor = true;
 			// 
 			// loginTextBox
 			// 
 			this->loginTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->loginTextBox->Location = System::Drawing::Point(260, 92);
+			this->loginTextBox->Location = System::Drawing::Point(238, 104);
 			this->loginTextBox->Name = L"loginTextBox";
 			this->loginTextBox->Size = System::Drawing::Size(367, 31);
-			this->loginTextBox->TabIndex = 11;
+			this->loginTextBox->TabIndex = 21;
 			this->loginTextBox->UseWaitCursor = true;
 			// 
 			// PasswordLabel
@@ -126,10 +145,10 @@ namespace Kursa4 {
 			this->PasswordLabel->AutoSize = true;
 			this->PasswordLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->PasswordLabel->Location = System::Drawing::Point(73, 156);
+			this->PasswordLabel->Location = System::Drawing::Point(51, 168);
 			this->PasswordLabel->Name = L"PasswordLabel";
 			this->PasswordLabel->Size = System::Drawing::Size(181, 25);
-			this->PasswordLabel->TabIndex = 10;
+			this->PasswordLabel->TabIndex = 20;
 			this->PasswordLabel->Text = L"Задайте Пароль:";
 			this->PasswordLabel->UseWaitCursor = true;
 			// 
@@ -138,10 +157,10 @@ namespace Kursa4 {
 			this->LoginLabel->AutoSize = true;
 			this->LoginLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->LoginLabel->Location = System::Drawing::Point(88, 98);
+			this->LoginLabel->Location = System::Drawing::Point(66, 110);
 			this->LoginLabel->Name = L"LoginLabel";
 			this->LoginLabel->Size = System::Drawing::Size(166, 25);
-			this->LoginLabel->TabIndex = 9;
+			this->LoginLabel->TabIndex = 19;
 			this->LoginLabel->Text = L"Задайте Логин:";
 			this->LoginLabel->UseWaitCursor = true;
 			// 
@@ -151,41 +170,19 @@ namespace Kursa4 {
 			this->RegLabel->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->RegLabel->ImageAlign = System::Drawing::ContentAlignment::TopCenter;
-			this->RegLabel->Location = System::Drawing::Point(362, 25);
+			this->RegLabel->Location = System::Drawing::Point(340, 37);
 			this->RegLabel->Name = L"RegLabel";
 			this->RegLabel->Size = System::Drawing::Size(174, 31);
-			this->RegLabel->TabIndex = 8;
+			this->RegLabel->TabIndex = 18;
 			this->RegLabel->Text = L"Регистрация";
 			this->RegLabel->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			this->RegLabel->UseWaitCursor = true;
-			// 
-			// repeatPasswordTextBox
-			// 
-			this->repeatPasswordTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular,
-				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->repeatPasswordTextBox->Location = System::Drawing::Point(260, 214);
-			this->repeatPasswordTextBox->Name = L"repeatPasswordTextBox";
-			this->repeatPasswordTextBox->Size = System::Drawing::Size(367, 31);
-			this->repeatPasswordTextBox->TabIndex = 17;
-			this->repeatPasswordTextBox->UseWaitCursor = true;
-			// 
-			// label1
-			// 
-			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(73, 214);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(181, 25);
-			this->label1->TabIndex = 16;
-			this->label1->Text = L"Задайте Пароль:";
-			this->label1->UseWaitCursor = true;
 			// 
 			// RegistrationForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(842, 447);
+			this->ClientSize = System::Drawing::Size(811, 457);
 			this->Controls->Add(this->repeatPasswordTextBox);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->registrationButton);
@@ -202,7 +199,9 @@ namespace Kursa4 {
 
 		}
 #pragma endregion
-	private: System::Void NoAccountLink_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) {
+	private: System::Void haveAnAccountLink_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) 
+	{		
+		RegistrationForm::Hide();
 	}
 };
 }

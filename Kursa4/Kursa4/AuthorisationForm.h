@@ -1,7 +1,7 @@
 #pragma once
 #include "HomeForm.h"
-//#include "RegistrationForm.h"
 #include <string>
+#include "RegistrationForm.h"
 
 namespace Kursa4 {
 
@@ -217,8 +217,8 @@ namespace Kursa4 {
 	}
 private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) 
 {
-	RegistrationForm^ registrationForm = gcnew RegistrationForm();
-	registrationForm->Show();
+	RegistrationForm^ regForm = gcnew RegistrationForm();
+	regForm->Show();
 	AuthorisationForm::Hide();
 }
 

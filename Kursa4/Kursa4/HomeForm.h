@@ -72,10 +72,13 @@ namespace Kursa4 {
 			this->Controls->Add(this->label1);
 			this->Name = L"HomeForm";
 			this->Text = L"HomeForm";
+			this->Load += gcnew System::EventHandler(this, &HomeForm::HomeForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
+	private: System::Void HomeForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
 	};
 }
