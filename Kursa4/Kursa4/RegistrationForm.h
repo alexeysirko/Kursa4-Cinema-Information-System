@@ -1,4 +1,5 @@
 #pragma once
+#include "FilesManager.h"
 
 namespace Kursa4 {
 
@@ -105,6 +106,7 @@ namespace Kursa4 {
 			this->registrationButton->Text = L"Зарегестрироваться";
 			this->registrationButton->UseVisualStyleBackColor = false;
 			this->registrationButton->UseWaitCursor = true;
+			this->registrationButton->Click += gcnew System::EventHandler(this, &RegistrationForm::registrationButton_Click);
 			// 
 			// haveAnAccountLink
 			// 
@@ -199,9 +201,77 @@ namespace Kursa4 {
 
 		}
 #pragma endregion
+
+	bool IsLoginExist(String^ login)
+	{
+		if (login == "wow")
+		{
+			MessageBox::Show(this, "Этот логин занят!", "Введите другой логин", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			return true;
+		}
+
+		return false;
+		//TODO: get accounts from data file and compare logins
+		/*for (int i = 0; i < amountOfAccounts; i++)
+		{
+			if (login == account[i].login)
+			{
+				MessageBox::Show(this, "Этот логин занят!", "Введите другой логин", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+				return;
+			}
+		}*/
+	}
+
+	bool IsPasswordCorrect(String^ password)
+	{
+		const int PASSWORD_MIN_LENGTH = 6;
+		
+		if (password->Length >= PASSWORD_MIN_LENGTH)
+		{
+			return true;
+		}
+		else
+		{
+			MessageBox::Show(this, "Слишком короткий пароль!", "Пароль должен быть >= 6 символов", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			return false;
+		}
+	}
+
+	bool ArePasswordsEqual(String^ str1, String^ str2)
+	{
+		if (str1 == str2)
+		{
+			return true;
+		}
+		else
+		{
+			MessageBox::Show(this, "Пароли не совпадают!", "Ошибка",  MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			return false;
+		}
+	}
+
+
 	private: System::Void haveAnAccountLink_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) 
-	{		
-		RegistrationForm::Hide();
+	{				
+		Application::Exit();
+	}
+
+	const int USER = 0;
+	String^ ACCOUNTS_FILE = "AccountsData.txt";
+
+	private: System::Void registrationButton_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		String^ login = loginTextBox->Text;
+		String^ password = passwordTextBox->Text;
+		String^ repeatedPassword = repeatPasswordTextBox->Text;
+
+		if (!IsLoginExist(login) 
+			& IsPasswordCorrect(password) 
+			& ArePasswordsEqual(password, repeatedPassword))
+		{
+			FilesManager().WriteInFile(ACCOUNTS_FILE, login + "\n" + password + "\n" + USER);
+			MessageBox::Show(this, "Вы зарегестрированы!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+		}
 	}
 };
 }

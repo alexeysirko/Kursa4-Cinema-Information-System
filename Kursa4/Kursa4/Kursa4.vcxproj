@@ -126,6 +126,7 @@
     <ClInclude Include="AuthorisationForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="FilesManager.h" />
     <ClInclude Include="HomeForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

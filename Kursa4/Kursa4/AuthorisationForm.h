@@ -1,6 +1,6 @@
 #pragma once
-#include "HomeForm.h"
 #include <string>
+#include "HomeForm.h"
 #include "RegistrationForm.h"
 
 namespace Kursa4 {
@@ -207,7 +207,9 @@ namespace Kursa4 {
 
 		}
 #pragma endregion
-	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+
 	}
 	private: System::Void RegistrationForm_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -227,7 +229,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	Application::Exit();
 }
 
-	   bool AreLoginAndPasswordCorrect(String^ login, String^ password)
+	   bool AreLoginAndPasswordRight(String^ login, String^ password)
 	   {
 		   if (login == "login" && password == "password")
 		   {
@@ -240,12 +242,14 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		   }
 	   }
 
+	
+
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) 
 {
 	String^ login = loginTextBox->Text;
 	String^ password = PasswordTextBox->Text;
 
-	if (AreLoginAndPasswordCorrect(login, password))
+	if (AreLoginAndPasswordRight(login, password))
 	{
 		HomeForm^ homeForm = gcnew HomeForm();
 		homeForm->Show();
