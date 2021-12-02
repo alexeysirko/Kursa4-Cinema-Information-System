@@ -255,7 +255,8 @@ private: System::Void textBox2_TextChanged(System::Object^ sender, System::Event
 
 	bool AreLoginAndPasswordRight(String^ login, String^ password)
 	{
-		FilesManager().ReadUsersListFromFile("AccountsData.txt");
+		
+
 		if (login == "login" && password == "password")
 		{
 			return true;

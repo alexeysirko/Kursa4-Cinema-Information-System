@@ -1,6 +1,5 @@
 #pragma once
 #include "User.h"
-#include <vector>
 
 namespace Kursa4
 {
@@ -38,7 +37,7 @@ namespace Kursa4
 					switch (strokeNumber++)
 					{
 					case 1:
-						users[users->Count-1]->login = str;
+						users[users->Count - 1]->login = str;
 						break;
 
 					case 2:
@@ -67,7 +66,7 @@ namespace Kursa4
 			finally
 			{
 				//Clearing last empty element created in switch-case
-				users->RemoveAt(users->Count-1);
+				users->RemoveAt(users->Count - 1);
 			}
 
 			return users;
