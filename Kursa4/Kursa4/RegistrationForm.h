@@ -202,6 +202,30 @@ namespace Kursa4 {
 		}
 #pragma endregion
 
+	private: System::Void haveAnAccountLink_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) 
+	{				
+		Application::Exit();
+	}
+
+	const int USER = 0;
+	String^ ACCOUNTS_FILE = "AccountsData.txt";
+
+	private: System::Void registrationButton_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		String^ login = loginTextBox->Text;
+		String^ password = passwordTextBox->Text;
+		String^ repeatedPassword = repeatPasswordTextBox->Text;
+
+		if (!IsLoginExist(login) 
+			& IsPasswordCorrect(password) 
+			& ArePasswordsEqual(password, repeatedPassword))
+		{
+			FilesManager().WriteInFile(ACCOUNTS_FILE, login + "\n" + password + "\n" + USER + "\n");
+			MessageBox::Show(this, "Вы зарегестрированы!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+		}
+	}
+
+private:
 	bool IsLoginExist(String^ login)
 	{
 		if (login == "wow")
@@ -225,7 +249,7 @@ namespace Kursa4 {
 	bool IsPasswordCorrect(String^ password)
 	{
 		const int PASSWORD_MIN_LENGTH = 6;
-		
+
 		if (password->Length >= PASSWORD_MIN_LENGTH)
 		{
 			return true;
@@ -245,32 +269,8 @@ namespace Kursa4 {
 		}
 		else
 		{
-			MessageBox::Show(this, "Пароли не совпадают!", "Ошибка",  MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			MessageBox::Show(this, "Пароли не совпадают!", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 			return false;
-		}
-	}
-
-
-	private: System::Void haveAnAccountLink_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) 
-	{				
-		Application::Exit();
-	}
-
-	const int USER = 0;
-	String^ ACCOUNTS_FILE = "AccountsData.txt";
-
-	private: System::Void registrationButton_Click(System::Object^ sender, System::EventArgs^ e) 
-	{
-		String^ login = loginTextBox->Text;
-		String^ password = passwordTextBox->Text;
-		String^ repeatedPassword = repeatPasswordTextBox->Text;
-
-		if (!IsLoginExist(login) 
-			& IsPasswordCorrect(password) 
-			& ArePasswordsEqual(password, repeatedPassword))
-		{
-			FilesManager().WriteInFile(ACCOUNTS_FILE, login + "\n" + password + "\n" + USER);
-			MessageBox::Show(this, "Вы зарегестрированы!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 		}
 	}
 };
