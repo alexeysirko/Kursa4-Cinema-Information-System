@@ -9,7 +9,7 @@ namespace Kursa4
 	using namespace System::IO;
 	using namespace System::Collections::Generic;
 
-	class FilesManager
+	ref class FilesManager
 	{
 	public:
 		static void WriteInFile(String^ fileName, String^ text)

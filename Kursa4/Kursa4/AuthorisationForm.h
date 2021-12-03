@@ -236,36 +236,27 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) 
 {
-	String^ login = loginTextBox->Text;
-	String^ password = PasswordTextBox->Text;
+	User user;
+	user.login = loginTextBox->Text;
+	user.password = PasswordTextBox->Text;	
 
-	if (AreLoginAndPasswordRight(login, password))
+	if (true)//user.AreLoginAndPasswordRight())
 	{
 		HomeForm^ homeForm = gcnew HomeForm();
 		homeForm->Show();
 		AuthorisationForm::Hide();
 	}
+	else
+	{
+		MessageBox::Show(this, "Вы ввели неверный логин или пароль!", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+	}
 }
 
-private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
+private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) 
+{
 }
 
 private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
-
-	bool AreLoginAndPasswordRight(String^ login, String^ password)
-	{
-		
-
-		if (login == "login" && password == "password")
-		{
-			return true;
-		}
-		else
-		{
-			MessageBox::Show(this, "Вы ввели неверный логин или пароль!", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-			return false;
-		}
-	}
 };
 }

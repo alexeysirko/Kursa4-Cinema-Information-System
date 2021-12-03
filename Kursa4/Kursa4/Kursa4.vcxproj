@@ -121,6 +121,7 @@
     <ClCompile Include="AuthorisationForm.cpp" />
     <ClCompile Include="HomeForm.cpp" />
     <ClCompile Include="RegistrationForm.cpp" />
+    <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuthorisationForm.h">
