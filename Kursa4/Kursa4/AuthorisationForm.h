@@ -91,7 +91,6 @@ namespace Kursa4 {
 			this->AuthLabel->Text = L"Авторизация";
 			this->AuthLabel->TextAlign = System::Drawing::ContentAlignment::TopCenter;
 			this->AuthLabel->UseWaitCursor = true;
-			this->AuthLabel->Click += gcnew System::EventHandler(this, &AuthorisationForm::label1_Click);
 			// 
 			// LoginLabel
 			// 
@@ -104,7 +103,6 @@ namespace Kursa4 {
 			this->LoginLabel->TabIndex = 1;
 			this->LoginLabel->Text = L"Логин:";
 			this->LoginLabel->UseWaitCursor = true;
-			this->LoginLabel->Click += gcnew System::EventHandler(this, &AuthorisationForm::label2_Click);
 			// 
 			// PasswordLabel
 			// 
@@ -117,7 +115,6 @@ namespace Kursa4 {
 			this->PasswordLabel->TabIndex = 2;
 			this->PasswordLabel->Text = L"Пароль:";
 			this->PasswordLabel->UseWaitCursor = true;
-			this->PasswordLabel->Click += gcnew System::EventHandler(this, &AuthorisationForm::label3_Click);
 			// 
 			// loginTextBox
 			// 
@@ -128,7 +125,6 @@ namespace Kursa4 {
 			this->loginTextBox->Size = System::Drawing::Size(339, 31);
 			this->loginTextBox->TabIndex = 3;
 			this->loginTextBox->UseWaitCursor = true;
-			this->loginTextBox->TextChanged += gcnew System::EventHandler(this, &AuthorisationForm::textBox1_TextChanged);
 			// 
 			// PasswordTextBox
 			// 
@@ -139,7 +135,6 @@ namespace Kursa4 {
 			this->PasswordTextBox->Size = System::Drawing::Size(339, 31);
 			this->PasswordTextBox->TabIndex = 4;
 			this->PasswordTextBox->UseWaitCursor = true;
-			this->PasswordTextBox->TextChanged += gcnew System::EventHandler(this, &AuthorisationForm::textBox2_TextChanged);
 			// 
 			// NoAccountLink
 			// 
@@ -153,7 +148,7 @@ namespace Kursa4 {
 			this->NoAccountLink->TabStop = true;
 			this->NoAccountLink->Text = L"Нет аккаунта\? Зарегестрироваться";
 			this->NoAccountLink->UseWaitCursor = true;
-			this->NoAccountLink->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &AuthorisationForm::linkLabel1_LinkClicked);
+			this->NoAccountLink->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &AuthorisationForm::NoAccount_LinkClicked);
 			// 
 			// CloseButton
 			// 
@@ -168,7 +163,7 @@ namespace Kursa4 {
 			this->CloseButton->Text = L"Закрыть";
 			this->CloseButton->UseVisualStyleBackColor = false;
 			this->CloseButton->UseWaitCursor = true;
-			this->CloseButton->Click += gcnew System::EventHandler(this, &AuthorisationForm::button1_Click);
+			this->CloseButton->Click += gcnew System::EventHandler(this, &AuthorisationForm::CloseButton_Click);
 			// 
 			// EntryButton
 			// 
@@ -182,7 +177,7 @@ namespace Kursa4 {
 			this->EntryButton->Text = L"Вход";
 			this->EntryButton->UseVisualStyleBackColor = false;
 			this->EntryButton->UseWaitCursor = true;
-			this->EntryButton->Click += gcnew System::EventHandler(this, &AuthorisationForm::button2_Click);
+			this->EntryButton->Click += gcnew System::EventHandler(this, &AuthorisationForm::EnterButton_Click);
 			// 
 			// AuthorisationForm
 			// 
@@ -201,46 +196,37 @@ namespace Kursa4 {
 			this->Name = L"AuthorisationForm";
 			this->Text = L"AuthorisationForm";
 			this->UseWaitCursor = true;
-			this->Load += gcnew System::EventHandler(this, &AuthorisationForm::RegistrationForm_Load);
+			this->Load += gcnew System::EventHandler(this, &AuthorisationForm::AuthorisationForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 	
-private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) 
+private: System::Void AuthorisationForm_Load(System::Object^ sender, System::EventArgs^ e) 
 	{
-
-	}
-	
-private: System::Void RegistrationForm_Load(System::Object^ sender, System::EventArgs^ e) {
-	}
-	
-private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-	
-private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+		PasswordTextBox->PasswordChar = '*';
 	}
 
-private: System::Void linkLabel1_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) 
+private: System::Void NoAccount_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) 
 {
 	RegistrationForm^ regForm = gcnew RegistrationForm();
 	regForm->Show();
 	AuthorisationForm::Hide();
 }
 
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
+private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e) 
 {
 	Application::Exit();
 }
 
-private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) 
+private: System::Void EnterButton_Click(System::Object^ sender, System::EventArgs^ e) 
 {
 	User user;
 	user.login = loginTextBox->Text;
 	user.password = PasswordTextBox->Text;	
 
-	if (true)//user.AreLoginAndPasswordRight())
+	if (user.AreLoginAndPasswordRight())
 	{
 		HomeForm^ homeForm = gcnew HomeForm();
 		homeForm->Show();
@@ -250,13 +236,6 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 	{
 		MessageBox::Show(this, "Вы ввели неверный логин или пароль!", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 	}
-}
-
-private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-}
-
-private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

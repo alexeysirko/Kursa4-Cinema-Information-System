@@ -7,7 +7,7 @@ namespace Kursa4
 	{
 		List<User^>^ users = UsersList().GetUsersList();
 
-		for (int i = 0; i < users->Count - 1; i++)
+		for (int i = 0; i < users->Count; i++)
 		{
 			if (users[i]->login == login)
 			{
