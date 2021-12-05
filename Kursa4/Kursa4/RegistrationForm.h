@@ -1,5 +1,6 @@
 #pragma once
 #include "FilesManager.h"
+#include "User.h"
 
 namespace Kursa4 {
 
@@ -198,9 +199,17 @@ namespace Kursa4 {
 			this->Text = L"RegistrationForm";
 			this->ResumeLayout(false);
 			this->PerformLayout();
+			this->Load += gcnew System::EventHandler(this, &Kursa4::RegistrationForm::RegForm_Load);
 
 		}
 #pragma endregion
+
+
+	private: void RegistrationForm::RegForm_Load(System::Object^ sender, System::EventArgs^ e)
+	{
+		passwordTextBox->PasswordChar = '*';
+		repeatPasswordTextBox->PasswordChar = '*';
+	}
 
 	private: System::Void haveAnAccountLink_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) 
 	{				
@@ -212,41 +221,21 @@ namespace Kursa4 {
 
 	private: System::Void registrationButton_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
-		String^ login = loginTextBox->Text;
-		String^ password = passwordTextBox->Text;
+		User^ user;
+		user->login = loginTextBox->Text;
+		user->password = passwordTextBox->Text;
 		String^ repeatedPassword = repeatPasswordTextBox->Text;
 
-		if (!IsLoginExist(login) 
-			& IsPasswordCorrect(password) 
-			& ArePasswordsEqual(password, repeatedPassword))
+		if (!User().IsLoginExist(user->login) 
+			& IsPasswordCorrect(user->password) 
+			& ArePasswordsEqual(user->password, repeatedPassword))
 		{
-			FilesManager().WriteInFile(ACCOUNTS_FILE, login + "\n" + password + "\n" + USER + "\n");
+			user->AddInFile(ACCOUNTS_FILE);
 			MessageBox::Show(this, "Вы зарегестрированы!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 		}
 	}
 
-private:
-	bool IsLoginExist(String^ login)
-	{
-		if (login == "wow")
-		{
-			MessageBox::Show(this, "Этот логин занят!", "Введите другой логин", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-			return true;
-		}
-
-		return false;
-		//TODO: get accounts from data file and compare logins
-		/*for (int i = 0; i < amountOfAccounts; i++)
-		{
-			if (login == account[i].login)
-			{
-				MessageBox::Show(this, "Этот логин занят!", "Введите другой логин", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-				return;
-			}
-		}*/
-	}
-
-	bool IsPasswordCorrect(String^ password)
+	private: bool IsPasswordCorrect(String^ password)
 	{
 		const int PASSWORD_MIN_LENGTH = 6;
 
@@ -256,12 +245,13 @@ private:
 		}
 		else
 		{
-			MessageBox::Show(this, "Слишком короткий пароль!", "Пароль должен быть >= 6 символов", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+			String^ passswordInf = "Пароль должен быть >= " + PASSWORD_MIN_LENGTH + " символов";
+			MessageBox::Show(this, "Слишком короткий пароль!", passswordInf, MessageBoxButtons::OK, MessageBoxIcon::Warning);
 			return false;
 		}
 	}
 
-	bool ArePasswordsEqual(String^ str1, String^ str2)
+	private: bool ArePasswordsEqual(String^ str1, String^ str2)
 	{
 		if (str1 == str2)
 		{

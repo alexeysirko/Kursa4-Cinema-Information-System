@@ -35,6 +35,9 @@ namespace Kursa4 {
 			}
 		}
 	private: System::Windows::Forms::Label^ label1;
+	private: System::Windows::Forms::ListBox^ listBox1;
+
+
 	protected:
 
 	private:
@@ -51,6 +54,7 @@ namespace Kursa4 {
 		void InitializeComponent(void)
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -58,17 +62,26 @@ namespace Kursa4 {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(212, 133);
+			this->label1->Location = System::Drawing::Point(335, 39);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(251, 31);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Добро пожаловать";
 			// 
+			// listBox1
+			// 
+			this->listBox1->FormattingEnabled = true;
+			this->listBox1->Location = System::Drawing::Point(148, 157);
+			this->listBox1->Name = L"listBox1";
+			this->listBox1->Size = System::Drawing::Size(631, 355);
+			this->listBox1->TabIndex = 1;
+			// 
 			// HomeForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(692, 318);
+			this->ClientSize = System::Drawing::Size(945, 584);
+			this->Controls->Add(this->listBox1);
 			this->Controls->Add(this->label1);
 			this->Name = L"HomeForm";
 			this->Text = L"HomeForm";
