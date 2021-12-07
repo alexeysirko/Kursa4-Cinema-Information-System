@@ -100,7 +100,7 @@ namespace Kursa4 {
 #pragma endregion
 	private: System::Void HomeForm_Load(System::Object^ sender, System::EventArgs^ e) 
 	{
-		listBox1->Items->Add
+		//listBox1->Items->Add
 	}
 	};
 }

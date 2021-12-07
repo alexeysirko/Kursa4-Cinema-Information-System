@@ -1,9 +1,3 @@
-Alex
-12345678
+Boris
+421963658
 0
-SecondDude
-password
-0
-new Super User
-qwerty
-1

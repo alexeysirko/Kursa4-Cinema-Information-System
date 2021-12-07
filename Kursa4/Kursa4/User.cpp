@@ -36,6 +36,6 @@ namespace Kursa4
 
 	void User::AddInFile(String^ fileName)
 	{
-		FilesManager().WriteInFile(fileName, login + "\n" + password + "\n" + role + "\n");
+		FilesManager().WriteInFile(fileName, login + "\n" + password->GetHashCode() + "\n" + role + "\n");
 	}
 }

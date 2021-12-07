@@ -224,7 +224,7 @@ private: System::Void EnterButton_Click(System::Object^ sender, System::EventArg
 {
 	User user;
 	user.login = loginTextBox->Text;
-	user.password = PasswordTextBox->Text;	
+	user.password = PasswordTextBox->Text->GetHashCode().ToString();	
 
 	if (user.AreLoginAndPasswordRight())
 	{

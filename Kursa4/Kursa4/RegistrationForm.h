@@ -1,6 +1,6 @@
 #pragma once
 #include "FilesManager.h"
-#include "User.h"
+#include "Constants.h"
 
 namespace Kursa4 {
 
@@ -216,12 +216,9 @@ namespace Kursa4 {
 		Application::Exit();
 	}
 
-	const int USER = 0;
-	String^ ACCOUNTS_FILE = "AccountsData.txt";
-
 	private: System::Void registrationButton_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
-		User^ user;
+		User^ user = gcnew User();
 		user->login = loginTextBox->Text;
 		user->password = passwordTextBox->Text;
 		String^ repeatedPassword = repeatPasswordTextBox->Text;
@@ -230,7 +227,7 @@ namespace Kursa4 {
 			& IsPasswordCorrect(user->password) 
 			& ArePasswordsEqual(user->password, repeatedPassword))
 		{
-			user->AddInFile(ACCOUNTS_FILE);
+			user->AddInFile(Constants().USERS_FILE);
 			MessageBox::Show(this, "Вы зарегестрированы!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 		}
 	}

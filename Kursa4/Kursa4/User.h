@@ -1,5 +1,4 @@
 #pragma once
-
 namespace Kursa4
 {	
 	using namespace System::Collections::Generic;

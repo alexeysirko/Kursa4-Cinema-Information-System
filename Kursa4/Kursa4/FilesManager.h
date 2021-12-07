@@ -1,6 +1,7 @@
 #pragma once
 #include "User.h"
 #include "Film.h"
+#include "Constants.h"
 
 namespace Kursa4
 {
@@ -12,12 +13,33 @@ namespace Kursa4
 
 	ref class FilesManager
 	{
+	private:
+		static void CreateUsersFile()
+		{
+			User^ user = gcnew User();
+			user->login = Constants().ADMIN_LOGIN;
+			user->password = Constants().ADMIN_PASSWORD;
+			user->role = Constants().ADMIN_ROLE;
+
+			File::Create(Constants().USERS_FILE);			
+			StreamWriter^ file = gcnew StreamWriter(Constants().USERS_FILE, true);
+			user->AddInFile(Constants().USERS_FILE);
+			file->Close();
+		}
+
 	public:
 		static void WriteInFile(String^ fileName, String^ text)
 		{
-			StreamWriter^ file = gcnew StreamWriter(fileName, true);
-			file->Write(text);
-			file->Close();
+			try
+			{
+				StreamWriter^ file = gcnew StreamWriter(fileName, true);	
+				file->Write(text);
+				file->Close();
+			}
+			catch(Exception^ e)
+			{
+				CreateUsersFile();
+			}	
 		}
 
 		static List<User^>^ ReadUsersListFromFile(String^ fileName)
