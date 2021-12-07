@@ -62,7 +62,7 @@ namespace Kursa4 {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(335, 39);
+			this->label1->Location = System::Drawing::Point(332, 26);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(251, 31);
 			this->label1->TabIndex = 0;
@@ -70,16 +70,23 @@ namespace Kursa4 {
 			// 
 			// listBox1
 			// 
+			this->listBox1->BackColor = System::Drawing::SystemColors::AppWorkspace;
+			this->listBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->listBox1->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->listBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
 			this->listBox1->FormattingEnabled = true;
-			this->listBox1->Location = System::Drawing::Point(148, 157);
+			this->listBox1->ItemHeight = 55;
+			this->listBox1->Location = System::Drawing::Point(142, 133);
 			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(631, 355);
+			this->listBox1->Size = System::Drawing::Size(647, 332);
 			this->listBox1->TabIndex = 1;
 			// 
 			// HomeForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::WindowFrame;
 			this->ClientSize = System::Drawing::Size(945, 584);
 			this->Controls->Add(this->listBox1);
 			this->Controls->Add(this->label1);
@@ -91,7 +98,9 @@ namespace Kursa4 {
 
 		}
 #pragma endregion
-	private: System::Void HomeForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void HomeForm_Load(System::Object^ sender, System::EventArgs^ e) 
+	{
+		listBox1->Items->Add
 	}
 	};
 }

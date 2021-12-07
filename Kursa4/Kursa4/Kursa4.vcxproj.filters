@@ -19,6 +19,12 @@
     <Filter Include="Source Files\FormsCpp">
       <UniqueIdentifier>{86d1e725-9f9c-471f-b37f-0cc307c06474}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{90009ee3-21a3-4545-af90-a8dfb4bff5a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Models">
+      <UniqueIdentifier>{cc2d793b-2309-42f8-a6b8-61b7e8789b20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AuthorisationForm.cpp">
@@ -47,20 +53,26 @@
     <ClInclude Include="RegistrationForm.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="FilesManager.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="User.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="UsersList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FilmForm.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="FilesManager.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
     <ClInclude Include="Film.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="FilmsList.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="UsersList.h">
+      <Filter>Header Files\Models</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,7 @@ namespace Kursa4
 		String^ genre;
 		String^ director;
 		String^ mainRole;
-		unsigned int watches;
+		unsigned int watches = 0;
 	};
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "User.h"
+#include "Film.h"
 
 namespace Kursa4
 {
@@ -21,7 +22,6 @@ namespace Kursa4
 
 		static List<User^>^ ReadUsersListFromFile(String^ fileName)
 		{
-			const int PARAMSCOUNT = 3;
 			List<User^>^ users = gcnew List<User^>();
 			users->Add(gcnew User());
 
@@ -44,7 +44,7 @@ namespace Kursa4
 						users[users->Count - 1]->password = str;
 						break;
 
-					case PARAMSCOUNT:
+					case 3:
 						users[users->Count - 1]->role = int::Parse(str);
 						strokeNumber = 1;
 						users->Add(gcnew User());
@@ -70,6 +70,68 @@ namespace Kursa4
 			}
 
 			return users;
+		}
+
+		static List<Film^>^ ReadFilmsListFromFile(String^ fileName)
+		{
+			List<Film^>^ films = gcnew List<Film^>();
+			films->Add(gcnew Film());
+
+			try
+			{
+				StreamReader^ file = File::OpenText(fileName);
+
+				String^ str;
+				int strokeNumber = 1;
+
+				while ((str = file->ReadLine()) != nullptr)
+				{
+					switch (strokeNumber++)
+					{
+					case 1:
+						films[films->Count - 1]->name = str;
+						break;
+
+					case 2:
+						films[films->Count - 1]->genre = str;
+						break;
+
+					case 3:
+						films[films->Count - 1]->director = str;
+						break;
+					
+					case 4:
+						films[films->Count - 1]->mainRole = str;
+						break;
+					
+					case 5:
+						films[films->Count - 1]->watches = int::Parse(str);
+						break;
+
+						strokeNumber = 1;
+						films->Add(gcnew Film());
+						break;
+					}
+				}
+			}
+			catch (Exception^ e)
+			{
+				if (dynamic_cast<FileNotFoundException^>(e))
+				{
+					MessageBox::Show("Файл фильмов не найден!", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Stop);
+				}
+				else
+				{
+					MessageBox::Show("Файл фильмов повреждён!", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Stop);
+				}
+			}
+			finally
+			{
+				//Clearing last empty element created in switch-case
+				films->RemoveAt(films->Count - 1);
+			}
+
+			return films;
 		}
 	};
 }

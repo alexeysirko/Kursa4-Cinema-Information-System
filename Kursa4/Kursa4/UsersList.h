@@ -1,5 +1,6 @@
 #pragma once
 #include "FilesManager.h"
+#include "Constants.h"
 
 namespace Kursa4
 {
@@ -18,7 +19,7 @@ namespace Kursa4
 		{
 			if (usersList == nullptr)
 			{
-				usersList = FilesManager().ReadUsersListFromFile("AccountsData.txt");
+				usersList = FilesManager().ReadUsersListFromFile(Constants().USERS_FILE);
 			}
 
 			return usersList;
