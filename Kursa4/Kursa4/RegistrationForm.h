@@ -206,7 +206,6 @@ namespace Kursa4 {
 		}
 #pragma endregion
 
-
 	private: void RegistrationForm::RegForm_Load(System::Object^ sender, System::EventArgs^ e)
 	{
 		passwordTextBox->PasswordChar = '*';

@@ -33,7 +33,9 @@ namespace Kursa4
 
 			try
 			{
-				File::WriteAllText(fileName, text);
+				StreamWriter^ file = gcnew StreamWriter(fileName, true);
+				file->Write(text);
+				file->Close();
 			}
 			catch(Exception^ e)
 			{
