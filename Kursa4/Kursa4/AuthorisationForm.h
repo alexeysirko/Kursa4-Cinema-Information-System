@@ -234,7 +234,7 @@ private: System::Void EnterButton_Click(System::Object^ sender, System::EventArg
 	}
 	else
 	{
-		MessageBox::Show(this, "Вы ввели неверный логин или пароль!", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Warning);
+		MessageBox::Show(this, "Вы ввели неверный логин или пароль!", "Попробуйте ещё раз", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 	}
 }
 };

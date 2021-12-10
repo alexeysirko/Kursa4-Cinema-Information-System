@@ -1,4 +1,6 @@
 #pragma once
+#include "FilmsList.h"
+
 
 namespace Kursa4 {
 
@@ -100,7 +102,9 @@ namespace Kursa4 {
 #pragma endregion
 	private: System::Void HomeForm_Load(System::Object^ sender, System::EventArgs^ e) 
 	{
-		//listBox1->Items->Add
+		List<Film^>^ films = FilmsList().GetFilmsList();
+
+
 	}
 	};
 }

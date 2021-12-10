@@ -14,7 +14,7 @@ namespace Kursa4
 
 		bool AreLoginAndPasswordRight();
 		static bool IsLoginExist(String^ login);
-		void AddInFile(String^ fileName);
+		void AddInFile(String^ fileName, List<User^>^ usersList);
 	};
 	
 }

@@ -13,37 +13,45 @@ namespace Kursa4
 
 	ref class FilesManager
 	{
-	private:
-		static void CreateUsersFile()
+	private: 
+		/// <summary>
+		/// Creates a file if it is not found
+		/// </summary>
+		static void FileCheck(String^ fileName)
 		{
-			User^ user = gcnew User();
-			user->login = Constants().ADMIN_LOGIN;
-			user->password = Constants().ADMIN_PASSWORD;
-			user->role = Constants().ADMIN_ROLE;
-
-			File::Create(Constants().USERS_FILE);			
-			StreamWriter^ file = gcnew StreamWriter(Constants().USERS_FILE, true);
-			user->AddInFile(Constants().USERS_FILE);
-			file->Close();
+			if (!File::Exists(fileName))
+			{
+				FileStream^ filestream = File::Create(fileName);
+				filestream->Close();
+			}
 		}
 
 	public:
 		static void WriteInFile(String^ fileName, String^ text)
 		{
+			FileCheck(fileName);
+
 			try
 			{
-				StreamWriter^ file = gcnew StreamWriter(fileName, true);	
-				file->Write(text);
-				file->Close();
+				File::WriteAllText(fileName, text);
 			}
 			catch(Exception^ e)
 			{
-				CreateUsersFile();
+				if (dynamic_cast<FileNotFoundException^>(e))
+				{
+					MessageBox::Show("Файл пользователей не найден!", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Stop);
+				}
+				else
+				{
+					MessageBox::Show("Ошибка получения доступа к файлу!", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Stop);
+				}
 			}	
 		}
 
 		static List<User^>^ ReadUsersListFromFile(String^ fileName)
 		{
+			FileCheck(fileName);
+
 			List<User^>^ users = gcnew List<User^>();
 			users->Add(gcnew User());
 
@@ -73,6 +81,8 @@ namespace Kursa4
 						break;
 					}
 				}
+
+				file->Close();
 			}
 			catch (Exception^ e)
 			{
@@ -82,7 +92,7 @@ namespace Kursa4
 				}
 				else
 				{
-					MessageBox::Show("Файл пользователей повреждён!", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Stop);
+					MessageBox::Show("Файл пользователей не удалось открыть!", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Stop);
 				}
 			}
 			finally
@@ -96,6 +106,8 @@ namespace Kursa4
 
 		static List<Film^>^ ReadFilmsListFromFile(String^ fileName)
 		{
+			FileCheck(fileName);
+
 			List<Film^>^ films = gcnew List<Film^>();
 			films->Add(gcnew Film());
 

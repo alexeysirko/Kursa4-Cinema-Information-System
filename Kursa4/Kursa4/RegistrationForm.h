@@ -1,6 +1,8 @@
 #pragma once
 #include "FilesManager.h"
 #include "Constants.h"
+#include "UsersList.h"
+#include "HomeForm.h"
 
 namespace Kursa4 {
 
@@ -224,11 +226,15 @@ namespace Kursa4 {
 		String^ repeatedPassword = repeatPasswordTextBox->Text;
 
 		if (!User().IsLoginExist(user->login) 
-			& IsPasswordCorrect(user->password) 
-			& ArePasswordsEqual(user->password, repeatedPassword))
+			& ArePasswordsEqual(user->password, repeatedPassword)
+			& IsPasswordCorrect(user->password))
 		{
-			user->AddInFile(Constants().USERS_FILE);
+			user->AddInFile(Constants().USERS_FILE, UsersList().GetUsersList());
 			MessageBox::Show(this, "Вы зарегестрированы!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+
+			HomeForm^ homeForm = gcnew HomeForm();
+			homeForm->Show();
+			RegistrationForm::Hide();
 		}
 	}
 

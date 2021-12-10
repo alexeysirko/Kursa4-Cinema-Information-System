@@ -1,5 +1,6 @@
 #include "User.h"
 #include "UsersList.h"
+#include "Constants.h"
 
 namespace Kursa4
 {
@@ -34,8 +35,12 @@ namespace Kursa4
 		return false;
 	}
 
-	void User::AddInFile(String^ fileName)
+	void User::AddInFile(String^ fileName, List<User^>^ usersList)
 	{
+		if (usersList->Count <= 0)
+		{
+			role = Constants().ADMIN_ROLE;
+		}
 		FilesManager().WriteInFile(fileName, login + "\n" + password->GetHashCode() + "\n" + role + "\n");
 	}
 }
