@@ -20,9 +20,24 @@ namespace Kursa4 {
 		HomeForm(void)
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
+			
+			List<Film^>^ films = FilmsList().GetFilmsList();
+
+			Film^ film = gcnew Film();
+			film->name = "JOPA";
+			film->watches = 111;
+			films->Add(film);
+
+			Film^ film2 = gcnew Film();
+			film2->name = "SUPER";
+			film2->watches = 222;
+			films->Add(film2);
+
+			filmsListBox->DataSource = films;
+			filmsListBox->DisplayMember = "name";
+			filmsListBox->ValueMember = "watches";
+
+			filmsListBox->BindingContext = this->BindingContext;
 		}
 
 	protected:
@@ -37,7 +52,8 @@ namespace Kursa4 {
 			}
 		}
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::ListBox^ listBox1;
+	private: System::Windows::Forms::ListBox^ filmsListBox;
+	private: System::Windows::Forms::Label^ label2;
 
 
 	protected:
@@ -56,42 +72,56 @@ namespace Kursa4 {
 		void InitializeComponent(void)
 		{
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->filmsListBox = (gcnew System::Windows::Forms::ListBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 26.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(332, 26);
+			this->label1->Location = System::Drawing::Point(274, 23);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(251, 31);
+			this->label1->Size = System::Drawing::Size(333, 39);
 			this->label1->TabIndex = 0;
-			this->label1->Text = L"Добро пожаловать";
+			this->label1->Text = L"Добро пожаловать!";
 			// 
-			// listBox1
+			// filmsListBox
 			// 
-			this->listBox1->BackColor = System::Drawing::SystemColors::AppWorkspace;
-			this->listBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->listBox1->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->listBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+			this->filmsListBox->BackColor = System::Drawing::SystemColors::AppWorkspace;
+			this->filmsListBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->filmsListBox->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->filmsListBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->listBox1->FormattingEnabled = true;
-			this->listBox1->ItemHeight = 55;
-			this->listBox1->Location = System::Drawing::Point(142, 133);
-			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(647, 332);
-			this->listBox1->TabIndex = 1;
+			this->filmsListBox->FormattingEnabled = true;
+			this->filmsListBox->ItemHeight = 55;
+			this->filmsListBox->Location = System::Drawing::Point(34, 146);
+			this->filmsListBox->Name = L"filmsListBox";
+			this->filmsListBox->Size = System::Drawing::Size(647, 332);
+			this->filmsListBox->TabIndex = 1;
+			this->filmsListBox->SelectedIndexChanged += gcnew System::EventHandler(this, &HomeForm::filmsListBox_SelectedIndexChanged);
+			// 
+			// label2
+			// 
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 27.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label2->Location = System::Drawing::Point(27, 90);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(156, 42);
+			this->label2->TabIndex = 2;
+			this->label2->Text = L"Афиша:";
 			// 
 			// HomeForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::WindowFrame;
-			this->ClientSize = System::Drawing::Size(945, 584);
-			this->Controls->Add(this->listBox1);
+			this->ClientSize = System::Drawing::Size(928, 628);
+			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
+			this->Controls->Add(this->filmsListBox);
 			this->Name = L"HomeForm";
 			this->Text = L"HomeForm";
 			this->Load += gcnew System::EventHandler(this, &HomeForm::HomeForm_Load);
@@ -100,11 +130,19 @@ namespace Kursa4 {
 
 		}
 #pragma endregion
+
 	private: System::Void HomeForm_Load(System::Object^ sender, System::EventArgs^ e) 
+	{		
+	}
+
+	private: System::Void filmsListBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e) 
 	{
-		List<Film^>^ films = FilmsList().GetFilmsList();
+		// получаем watches выделенного объекта
+		//int watches = (int)filmsListBox->SelectedValue;
 
-
+		// получаем весь выделенный объект
+		Film^ film = (Film^)filmsListBox->SelectedItem;
+		MessageBox::Show("Название фильма " + film->name);
 	}
 	};
 }

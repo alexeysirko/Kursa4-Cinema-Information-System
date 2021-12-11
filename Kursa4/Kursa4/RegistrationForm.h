@@ -4,7 +4,8 @@
 #include "UsersList.h"
 #include "HomeForm.h"
 
-namespace Kursa4 {
+namespace Kursa4 
+{
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -214,7 +215,8 @@ namespace Kursa4 {
 
 	private: System::Void haveAnAccountLink_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) 
 	{				
-		Application::Exit();
+		Application::OpenForms[0]->Show();
+		this->Hide();
 	}
 
 	private: System::Void registrationButton_Click(System::Object^ sender, System::EventArgs^ e) 
@@ -233,7 +235,7 @@ namespace Kursa4 {
 
 			HomeForm^ homeForm = gcnew HomeForm();
 			homeForm->Show();
-			RegistrationForm::Hide();
+			this->Hide();
 		}
 	}
 

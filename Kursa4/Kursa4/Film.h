@@ -7,11 +7,11 @@ namespace Kursa4
 	ref class Film
 	{
 	public:
-		String^ name;
+		property String^ name;
 		String^ genre;
 		String^ director;
 		String^ mainRole;
-		unsigned int watches = 0;
+		property unsigned int watches;
 	};
 }
 
