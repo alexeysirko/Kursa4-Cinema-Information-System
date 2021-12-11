@@ -230,7 +230,8 @@ namespace Kursa4
 			& ArePasswordsEqual(user->password, repeatedPassword)
 			& IsPasswordCorrect(user->password))
 		{
-			user->AddInFile(Constants().USERS_FILE, UsersList().GetUsersList());
+			SetAdminIfUsersListIsEmpty(user);
+			user->AddInFile(Constants().USERS_FILE);
 			MessageBox::Show(this, "Вы зарегестрированы!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 
 			HomeForm^ homeForm = gcnew HomeForm();
@@ -265,6 +266,15 @@ namespace Kursa4
 		{
 			MessageBox::Show(this, "Пароли не совпадают!", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Warning);
 			return false;
+		}
+	}
+
+	private: void SetAdminIfUsersListIsEmpty(User^ user)
+	{
+		List<User^>^ users= UsersList().GetUsersList();
+		if (users == nullptr || users->Count == 0)
+		{
+			user->role = Constants().ADMIN_ROLE;
 		}
 	}
 };

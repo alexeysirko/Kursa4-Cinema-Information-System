@@ -35,12 +35,8 @@ namespace Kursa4
 		return false;
 	}
 
-	void User::AddInFile(String^ fileName, List<User^>^ usersList)
+	void User::AddInFile(String^ fileName)
 	{
-		if (usersList->Count <= 0)
-		{
-			role = Constants().ADMIN_ROLE;
-		}
 		FilesManager().WriteInFile(fileName, login + "\n" + password->GetHashCode() + "\n" + role + "\n");
 	}
 }

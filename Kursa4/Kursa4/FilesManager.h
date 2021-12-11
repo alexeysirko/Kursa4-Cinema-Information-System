@@ -114,7 +114,7 @@ namespace Kursa4
 			films->Add(gcnew Film());
 
 			try
-			{
+			{				
 				StreamReader^ file = File::OpenText(fileName);
 
 				String^ str;
@@ -142,7 +142,6 @@ namespace Kursa4
 					
 					case 5:
 						films[films->Count - 1]->watches = int::Parse(str);
-						break;
 
 						strokeNumber = 1;
 						films->Add(gcnew Film());

@@ -25,6 +25,9 @@
     <Filter Include="Header Files\Models">
       <UniqueIdentifier>{cc2d793b-2309-42f8-a6b8-61b7e8789b20}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\AppData">
+      <UniqueIdentifier>{ab748f0f-741a-45a7-87d9-14007522ddd3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AuthorisationForm.cpp">
@@ -42,6 +45,12 @@
     <ClCompile Include="FilmForm.cpp">
       <Filter>Source Files\FormsCpp</Filter>
     </ClCompile>
+    <ClCompile Include="Film.cpp">
+      <Filter>Source Files\MyClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="AddFilmForm.cpp">
+      <Filter>Source Files\FormsCpp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuthorisationForm.h">
@@ -55,9 +64,6 @@
     </ClInclude>
     <ClInclude Include="FilmForm.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Constants.h">
-      <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="FilesManager.h">
       <Filter>Header Files\Utils</Filter>
@@ -74,5 +80,18 @@
     <ClInclude Include="UsersList.h">
       <Filter>Header Files\Models</Filter>
     </ClInclude>
+    <ClInclude Include="Models.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="AddFilmForm.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Header Files\AppData</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="AccountsData.txt" />
+    <Text Include="FilmsDataOLD.txt" />
   </ItemGroup>
 </Project>
