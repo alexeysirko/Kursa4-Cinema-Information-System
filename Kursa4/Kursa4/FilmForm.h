@@ -2,7 +2,8 @@
 #include "Film.h"
 #include "FilmsList.h"
 
-namespace Kursa4 {
+namespace Kursa4 
+{
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -48,6 +49,7 @@ namespace Kursa4 {
 	private: System::Windows::Forms::Button^ watchButton;
 
 	private: Film^ film;
+	private: System::Windows::Forms::LinkLabel^ BackLink;
 
 	protected:
 
@@ -75,6 +77,7 @@ namespace Kursa4 {
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->Watches = (gcnew System::Windows::Forms::Label());
 			this->watchButton = (gcnew System::Windows::Forms::Button());
+			this->BackLink = (gcnew System::Windows::Forms::LinkLabel());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->FilmImage))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -203,6 +206,19 @@ namespace Kursa4 {
 			this->watchButton->UseVisualStyleBackColor = false;
 			this->watchButton->Click += gcnew System::EventHandler(this, &FilmForm::WatchButton_Click);
 			// 
+			// BackLink
+			// 
+			this->BackLink->AutoSize = true;
+			this->BackLink->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->BackLink->Location = System::Drawing::Point(721, 20);
+			this->BackLink->Name = L"BackLink";
+			this->BackLink->Size = System::Drawing::Size(58, 20);
+			this->BackLink->TabIndex = 11;
+			this->BackLink->TabStop = true;
+			this->BackLink->Text = L"Назад";
+			this->BackLink->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &FilmForm::BackLink_LinkClicked);
+			// 
 			// FilmForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -210,6 +226,8 @@ namespace Kursa4 {
 			this->BackColor = System::Drawing::SystemColors::AppWorkspace;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->ClientSize = System::Drawing::Size(809, 428);
+			this->ControlBox = false;
+			this->Controls->Add(this->BackLink);
 			this->Controls->Add(this->watchButton);
 			this->Controls->Add(this->Watches);
 			this->Controls->Add(this->label4);
@@ -233,30 +251,12 @@ namespace Kursa4 {
 		}
 #pragma endregion
 
-private: System::Void FilmForm_Load(System::Object^ sender, System::EventArgs^ e) 
-{
-	SetFilmParameters();
-}
+private: System::Void FilmForm_Load(System::Object^ sender, System::EventArgs^ e);
 
-private: void SetFilmParameters()
-	{
-		FilmName->Text = film->name;
-		Genre->Text = film->genre;
-		Director->Text = film->director;
-		MainRole->Text = film->mainRole;
-		Watches->Text = film->watches.ToString();
-	}
+private: void SetFilmParameters();
 
-private: System::Void WatchButton_Click(System::Object^ sender, System::EventArgs^ e) 
-	{
-		film->watches++;
-		Watches->Text = film->watches.ToString();
-		FilmsList().FindFilm(film->name)->watches = film->watches;
+private: System::Void WatchButton_Click(System::Object^ sender, System::EventArgs^ e);
 
-		MessageBox::Show(this, "Спасибо за просмотр!", "Ура", MessageBoxButtons::OK, MessageBoxIcon::Hand);
-
-		watchButton->Enabled = false;
-		watchButton->BackColor = System::Drawing::Color::DarkGray;
-	}
+private: System::Void BackLink_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e);
 };
 }

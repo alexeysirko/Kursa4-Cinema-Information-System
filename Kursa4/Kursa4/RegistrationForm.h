@@ -207,76 +207,16 @@ namespace Kursa4
 		}
 #pragma endregion
 
-	private: void RegistrationForm::RegForm_Load(System::Object^ sender, System::EventArgs^ e)
-	{
-		passwordTextBox->PasswordChar = '*';
-		repeatPasswordTextBox->PasswordChar = '*';
-	}
+	private: void RegistrationForm::RegForm_Load(System::Object^ sender, System::EventArgs^ e);
 
-	private: System::Void haveAnAccountLink_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) 
-	{				
-		Application::OpenForms[0]->Show();
-		this->Close();
-	}
+	private: System::Void haveAnAccountLink_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e);
 
-	private: System::Void registrationButton_Click(System::Object^ sender, System::EventArgs^ e) 
-	{
-		User^ user = gcnew User();
-		user->login = loginTextBox->Text;
-		user->password = passwordTextBox->Text;
-		user->role = Constants().USER_ROLE;
-		String^ repeatedPassword = repeatPasswordTextBox->Text;
+	private: System::Void registrationButton_Click(System::Object^ sender, System::EventArgs^ e);
 
-		if (!User().IsLoginExist(user->login) 
-			& ArePasswordsEqual(user->password, repeatedPassword)
-			& IsPasswordCorrect(user->password))
-		{
-			SetAdminIfUsersListIsEmpty(user);
-			user->AddInFile(Constants().USERS_FILE);
-			MessageBox::Show(this, "Вы зарегестрированы!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+	private: bool IsPasswordCorrect(String^ password);
 
-			HomeForm^ homeForm = gcnew HomeForm(user->role);
-			homeForm->Show();
-			this->Hide();
-		}
-	}
+	private: bool ArePasswordsEqual(String^ str1, String^ str2);
 
-	private: bool IsPasswordCorrect(String^ password)
-	{
-		const int PASSWORD_MIN_LENGTH = 6;
-
-		if (password->Length >= PASSWORD_MIN_LENGTH)
-		{
-			return true;
-		}
-		else
-		{
-			String^ passswordInf = "Пароль должен быть >= " + PASSWORD_MIN_LENGTH + " символов";
-			MessageBox::Show(this, "Слишком короткий пароль!", passswordInf, MessageBoxButtons::OK, MessageBoxIcon::Warning);
-			return false;
-		}
-	}
-
-	private: bool ArePasswordsEqual(String^ str1, String^ str2)
-	{
-		if (str1 == str2)
-		{
-			return true;
-		}
-		else
-		{
-			MessageBox::Show(this, "Пароли не совпадают!", "Ошибка", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-			return false;
-		}
-	}
-
-	private: void SetAdminIfUsersListIsEmpty(User^ user)
-	{
-		List<User^>^ users = UsersList().GetUsersList();
-		if (users == nullptr || users->Count == 0)
-		{
-			user->role = Constants().ADMIN_ROLE;
-		}
-	}
+	private: void SetAdminIfUsersListIsEmpty(User^ user);
 };
 }

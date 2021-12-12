@@ -144,26 +144,8 @@ namespace Kursa4
 		}
 #pragma endregion
 
-	private: System::Void HomeForm_Load(System::Object^ sender, System::EventArgs^ e)
-	{
-		if (role != Constants().ADMIN_ROLE)
-		{
-			AddButton->Hide();
-		}
-	}
-
-	private: System::Void filmsListBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e)
-	{
-		Film^ film = (Film^)filmsListBox->SelectedItem;
-
-		FilmForm^ filmForm = gcnew FilmForm(film);
-		filmForm->Show();
-		this->Hide();
-	}
-	private: System::Void AddButton_Click(System::Object^ sender, System::EventArgs^ e) 
-	{
-		AddFilmForm^ addFilmForm = gcnew AddFilmForm();
-		addFilmForm->ShowDialog();
-	}
+	private: System::Void HomeForm_Load(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void filmsListBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void AddButton_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

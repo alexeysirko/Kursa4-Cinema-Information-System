@@ -34,6 +34,7 @@ namespace Kursa4
 				delete components;
 			}
 		}
+
 	private: System::Windows::Forms::Label^ label1;
 	protected:
 	private: System::Windows::Forms::Label^ label2;
@@ -218,76 +219,10 @@ namespace Kursa4
 		}
 #pragma endregion
 	
-private: System::Void AddFilmForm_Load(System::Object^ sender, System::EventArgs^ e)
-	{
-		prevForm = Application::OpenForms->Count - 2;
-	}
+private: System::Void AddFilmForm_Load(System::Object^ sender, System::EventArgs^ e);
 
-private: System::Void SaveButton_Click(System::Object^ sender, System::EventArgs^ e) 
-	{
-		Film^ film = gcnew Film();
-		
-		if (filmName->Text == "" || filmName->Text == nullptr)
-		{
-			filmName->BackColor = System::Drawing::Color::Tomato;
-			return;
-		}
-		else
-		{
-			filmName->BackColor = System::Drawing::Color::DarkSeaGreen;
-			film->name = filmName->Text;
-		}
+private: System::Void SaveButton_Click(System::Object^ sender, System::EventArgs^ e);
 
-		if (Genre->Text == "" || Genre->Text == nullptr)
-		{
-			Genre->BackColor = System::Drawing::Color::Tomato;
-			return;
-		}
-		else
-		{
-			Genre->BackColor = System::Drawing::Color::DarkSeaGreen;
-			film->genre = Genre->Text;
-		}
-
-
-		if (Director->Text == "" || Director->Text == nullptr)
-		{
-			Director->BackColor = System::Drawing::Color::Tomato;
-			return;
-		}
-		else
-		{
-			Director->BackColor = System::Drawing::Color::DarkSeaGreen;
-			film->director = Director->Text;
-		}
-
-
-		if (mainRole->Text == "" || mainRole->Text == nullptr)
-		{
-			mainRole->BackColor = System::Drawing::Color::Tomato;
-			return;
-		}
-		else
-		{
-			mainRole->BackColor = System::Drawing::Color::DarkSeaGreen;
-			film->mainRole = mainRole->Text;
-		}		
-
-		film->watches = 0;
-
-		film->AddInFile(Constants().FILMS_FILE);
-		FilmsList().GetFilmsList()->Add(film);
-		MessageBox::Show(this, "Фильм добавлен!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
-			
-		//TODO Refresh list
-		//Application::OpenForms[prevForm]->ResetBindings();
-		this->Close();
-	}
-
-private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e) 
-	{
-		Application::OpenForms[prevForm]->Show();
-		this->Close();
-	}
+private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

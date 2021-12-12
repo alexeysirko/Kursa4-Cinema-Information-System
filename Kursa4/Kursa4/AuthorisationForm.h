@@ -203,40 +203,12 @@ namespace Kursa4 {
 		}
 #pragma endregion
 	
-private: System::Void AuthorisationForm_Load(System::Object^ sender, System::EventArgs^ e) 
-	{
-		PasswordTextBox->PasswordChar = '*';
-	}
+private: System::Void AuthorisationForm_Load(System::Object^ sender, System::EventArgs^ e);
 
-private: System::Void NoAccount_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) 
-{
-	RegistrationForm^ regForm = gcnew RegistrationForm();
-	regForm->Show();
-	AuthorisationForm::Hide();
-}
+private: System::Void NoAccount_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e);
 
-private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	Application::Exit();
-}
+private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e);
 
-private: System::Void EnterButton_Click(System::Object^ sender, System::EventArgs^ e) 
-{
-	User^ user = gcnew User();
-	user->login = loginTextBox->Text;
-	user->password = PasswordTextBox->Text->GetHashCode().ToString();	
-	int role = 0;
-
-	if (user->AreLoginAndPasswordRight(role))
-	{
-		HomeForm^ homeForm = gcnew HomeForm(role);
-		homeForm->Show();
-		AuthorisationForm::Hide();
-	}
-	else
-	{
-		MessageBox::Show(this, "Вы ввели неверный логин или пароль!", "Попробуйте ещё раз", MessageBoxButtons::OK, MessageBoxIcon::Warning);
-	}
-}
+private: System::Void EnterButton_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }
