@@ -1,7 +1,10 @@
 #pragma once
+#include "Constants.h"
+#include "Film.h"
+#include "FilmsList.h"
 
-namespace Kursa4 {
-
+namespace Kursa4 
+{
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -15,12 +18,9 @@ namespace Kursa4 {
 	public ref class AddFilmForm : public System::Windows::Forms::Form
 	{
 	public:
-		AddFilmForm(void)
+		AddFilmForm()
 		{
 			InitializeComponent();
-			//
-			//TODO: Add the constructor code here
-			//
 		}
 
 	protected:
@@ -44,9 +44,10 @@ namespace Kursa4 {
 	private: System::Windows::Forms::TextBox^ filmName;
 	private: System::Windows::Forms::TextBox^ Director;
 	private: System::Windows::Forms::TextBox^ mainRole;
+	private: System::Windows::Forms::Button^ SaveButton;
+	private: System::Windows::Forms::Button^ CloseButton;
 
-	private: System::Windows::Forms::Button^ button1;
-	private: System::Windows::Forms::Button^ button2;
+	private: int prevForm;
 
 	private:
 		/// <summary>
@@ -69,8 +70,8 @@ namespace Kursa4 {
 			this->filmName = (gcnew System::Windows::Forms::TextBox());
 			this->Director = (gcnew System::Windows::Forms::TextBox());
 			this->mainRole = (gcnew System::Windows::Forms::TextBox());
-			this->button1 = (gcnew System::Windows::Forms::Button());
-			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->SaveButton = (gcnew System::Windows::Forms::Button());
+			this->CloseButton = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -83,7 +84,6 @@ namespace Kursa4 {
 			this->label1->Size = System::Drawing::Size(117, 25);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Название";
-			this->label1->Click += gcnew System::EventHandler(this, &AddFilmForm::label1_Click);
 			// 
 			// label2
 			// 
@@ -106,7 +106,6 @@ namespace Kursa4 {
 			this->label3->Size = System::Drawing::Size(159, 25);
 			this->label3->TabIndex = 2;
 			this->label3->Text = L"Главная роль";
-			this->label3->Click += gcnew System::EventHandler(this, &AddFilmForm::label3_Click);
 			// 
 			// label4
 			// 
@@ -118,18 +117,17 @@ namespace Kursa4 {
 			this->label4->Size = System::Drawing::Size(71, 25);
 			this->label4->TabIndex = 3;
 			this->label4->Text = L"Жанр";
-			this->label4->Click += gcnew System::EventHandler(this, &AddFilmForm::label4_Click);
 			// 
 			// Genre
 			// 
-			this->Genre->AutoCompleteCustomSource->AddRange(gcnew cli::array< System::String^  >(5) {
-				L"Хоррор", L"Фантастика", L"Комедия",
-					L"Мультфильм", L"Драма"
-			});
 			this->Genre->BackColor = System::Drawing::Color::DarkGray;
 			this->Genre->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->Genre->FormattingEnabled = true;
+			this->Genre->Items->AddRange(gcnew cli::array< System::Object^  >(5) {
+				L"Хоррор", L"Фантастика", L"Комедия", L"Мультфильм",
+					L"Драма"
+			});
 			this->Genre->Location = System::Drawing::Point(32, 147);
 			this->Genre->Name = L"Genre";
 			this->Genre->Size = System::Drawing::Size(255, 32);
@@ -165,32 +163,34 @@ namespace Kursa4 {
 			this->mainRole->Size = System::Drawing::Size(255, 29);
 			this->mainRole->TabIndex = 7;
 			// 
-			// button1
+			// SaveButton
 			// 
-			this->button1->BackColor = System::Drawing::Color::ForestGreen;
-			this->button1->FlatAppearance->BorderColor = System::Drawing::Color::Black;
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->SaveButton->BackColor = System::Drawing::Color::ForestGreen;
+			this->SaveButton->FlatAppearance->BorderColor = System::Drawing::Color::Black;
+			this->SaveButton->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->SaveButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button1->Location = System::Drawing::Point(32, 380);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(176, 50);
-			this->button1->TabIndex = 8;
-			this->button1->Text = L"Сохранить";
-			this->button1->UseVisualStyleBackColor = false;
+			this->SaveButton->Location = System::Drawing::Point(32, 380);
+			this->SaveButton->Name = L"SaveButton";
+			this->SaveButton->Size = System::Drawing::Size(176, 50);
+			this->SaveButton->TabIndex = 8;
+			this->SaveButton->Text = L"Сохранить";
+			this->SaveButton->UseVisualStyleBackColor = false;
+			this->SaveButton->Click += gcnew System::EventHandler(this, &AddFilmForm::SaveButton_Click);
 			// 
-			// button2
+			// CloseButton
 			// 
-			this->button2->BackColor = System::Drawing::SystemColors::WindowFrame;
-			this->button2->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->button2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->CloseButton->BackColor = System::Drawing::SystemColors::WindowFrame;
+			this->CloseButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->CloseButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button2->Location = System::Drawing::Point(269, 380);
-			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(176, 50);
-			this->button2->TabIndex = 9;
-			this->button2->Text = L"Отмена";
-			this->button2->UseVisualStyleBackColor = false;
+			this->CloseButton->Location = System::Drawing::Point(269, 380);
+			this->CloseButton->Name = L"CloseButton";
+			this->CloseButton->Size = System::Drawing::Size(176, 50);
+			this->CloseButton->TabIndex = 9;
+			this->CloseButton->Text = L"Отмена";
+			this->CloseButton->UseVisualStyleBackColor = false;
+			this->CloseButton->Click += gcnew System::EventHandler(this, &AddFilmForm::CloseButton_Click);
 			// 
 			// AddFilmForm
 			// 
@@ -198,8 +198,8 @@ namespace Kursa4 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::Color::DimGray;
 			this->ClientSize = System::Drawing::Size(487, 461);
-			this->Controls->Add(this->button2);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->CloseButton);
+			this->Controls->Add(this->SaveButton);
 			this->Controls->Add(this->mainRole);
 			this->Controls->Add(this->Director);
 			this->Controls->Add(this->filmName);
@@ -211,17 +211,83 @@ namespace Kursa4 {
 			this->Name = L"AddFilmForm";
 			this->ShowIcon = false;
 			this->Text = L"AddFilmForm";
+			this->Load += gcnew System::EventHandler(this, &AddFilmForm::AddFilmForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void label4_Click(System::Object^ sender, System::EventArgs^ e) 
+	
+private: System::Void AddFilmForm_Load(System::Object^ sender, System::EventArgs^ e)
 	{
+		prevForm = Application::OpenForms->Count - 2;
 	}
-	private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
+
+private: System::Void SaveButton_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		Film^ film = gcnew Film();
+		
+		if (filmName->Text == "" || filmName->Text == nullptr)
+		{
+			filmName->BackColor = System::Drawing::Color::Tomato;
+			return;
+		}
+		else
+		{
+			filmName->BackColor = System::Drawing::Color::DarkSeaGreen;
+			film->name = filmName->Text;
+		}
+
+		if (Genre->Text == "" || Genre->Text == nullptr)
+		{
+			Genre->BackColor = System::Drawing::Color::Tomato;
+			return;
+		}
+		else
+		{
+			Genre->BackColor = System::Drawing::Color::DarkSeaGreen;
+			film->genre = Genre->Text;
+		}
+
+
+		if (Director->Text == "" || Director->Text == nullptr)
+		{
+			Director->BackColor = System::Drawing::Color::Tomato;
+			return;
+		}
+		else
+		{
+			Director->BackColor = System::Drawing::Color::DarkSeaGreen;
+			film->director = Director->Text;
+		}
+
+
+		if (mainRole->Text == "" || mainRole->Text == nullptr)
+		{
+			mainRole->BackColor = System::Drawing::Color::Tomato;
+			return;
+		}
+		else
+		{
+			mainRole->BackColor = System::Drawing::Color::DarkSeaGreen;
+			film->mainRole = mainRole->Text;
+		}		
+
+		film->watches = 0;
+
+		film->AddInFile(Constants().FILMS_FILE);
+		FilmsList().GetFilmsList()->Add(film);
+		MessageBox::Show(this, "Фильм добавлен!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+			
+		//TODO Refresh list
+		//Application::OpenForms[prevForm]->ResetBindings();
+		this->Close();
 	}
-private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
-}
+
+private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		Application::OpenForms[prevForm]->Show();
+		this->Close();
+	}
 };
 }

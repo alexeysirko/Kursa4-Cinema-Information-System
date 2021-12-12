@@ -216,7 +216,7 @@ namespace Kursa4
 	private: System::Void haveAnAccountLink_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e) 
 	{				
 		Application::OpenForms[0]->Show();
-		this->Hide();
+		this->Close();
 	}
 
 	private: System::Void registrationButton_Click(System::Object^ sender, System::EventArgs^ e) 
@@ -224,6 +224,7 @@ namespace Kursa4
 		User^ user = gcnew User();
 		user->login = loginTextBox->Text;
 		user->password = passwordTextBox->Text;
+		user->role = Constants().USER_ROLE;
 		String^ repeatedPassword = repeatPasswordTextBox->Text;
 
 		if (!User().IsLoginExist(user->login) 
@@ -234,7 +235,7 @@ namespace Kursa4
 			user->AddInFile(Constants().USERS_FILE);
 			MessageBox::Show(this, "Вы зарегестрированы!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 
-			HomeForm^ homeForm = gcnew HomeForm();
+			HomeForm^ homeForm = gcnew HomeForm(user->role);
 			homeForm->Show();
 			this->Hide();
 		}
@@ -271,7 +272,7 @@ namespace Kursa4
 
 	private: void SetAdminIfUsersListIsEmpty(User^ user)
 	{
-		List<User^>^ users= UsersList().GetUsersList();
+		List<User^>^ users = UsersList().GetUsersList();
 		if (users == nullptr || users->Count == 0)
 		{
 			user->role = Constants().ADMIN_ROLE;

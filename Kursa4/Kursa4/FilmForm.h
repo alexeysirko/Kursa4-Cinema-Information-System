@@ -1,5 +1,6 @@
 #pragma once
 #include "Film.h"
+#include "FilmsList.h"
 
 namespace Kursa4 {
 
@@ -44,7 +45,8 @@ namespace Kursa4 {
 	private: System::Windows::Forms::Label^ MainRole;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Label^ Watches;
-	private: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ watchButton;
+
 	private: Film^ film;
 
 	protected:
@@ -72,7 +74,7 @@ namespace Kursa4 {
 			this->MainRole = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->Watches = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->watchButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->FilmImage))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -184,21 +186,22 @@ namespace Kursa4 {
 			this->Watches->TabIndex = 9;
 			this->Watches->Text = L"WatchesINT";
 			// 
-			// button1
+			// watchButton
 			// 
-			this->button1->BackColor = System::Drawing::Color::SandyBrown;
-			this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
-			this->button1->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
-			this->button1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->watchButton->BackColor = System::Drawing::Color::SandyBrown;
+			this->watchButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->watchButton->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->watchButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->button1->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+			this->watchButton->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
 				static_cast<System::Int32>(static_cast<System::Byte>(64)));
-			this->button1->Location = System::Drawing::Point(38, 349);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(252, 47);
-			this->button1->TabIndex = 10;
-			this->button1->Text = L"Посмотреть";
-			this->button1->UseVisualStyleBackColor = false;
+			this->watchButton->Location = System::Drawing::Point(38, 349);
+			this->watchButton->Name = L"watchButton";
+			this->watchButton->Size = System::Drawing::Size(252, 47);
+			this->watchButton->TabIndex = 10;
+			this->watchButton->Text = L"Посмотреть";
+			this->watchButton->UseVisualStyleBackColor = false;
+			this->watchButton->Click += gcnew System::EventHandler(this, &FilmForm::WatchButton_Click);
 			// 
 			// FilmForm
 			// 
@@ -206,8 +209,8 @@ namespace Kursa4 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::AppWorkspace;
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
-			this->ClientSize = System::Drawing::Size(811, 436);
-			this->Controls->Add(this->button1);
+			this->ClientSize = System::Drawing::Size(809, 428);
+			this->Controls->Add(this->watchButton);
 			this->Controls->Add(this->Watches);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->MainRole);
@@ -236,12 +239,24 @@ private: System::Void FilmForm_Load(System::Object^ sender, System::EventArgs^ e
 }
 
 private: void SetFilmParameters()
-{
-	FilmName->Text = film->name;
-	Genre->Text = film->genre;
-	Director->Text = film->director;
-	MainRole->Text = film->mainRole;
-	Watches->Text = film->watches.ToString();
-}
+	{
+		FilmName->Text = film->name;
+		Genre->Text = film->genre;
+		Director->Text = film->director;
+		MainRole->Text = film->mainRole;
+		Watches->Text = film->watches.ToString();
+	}
+
+private: System::Void WatchButton_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		film->watches++;
+		Watches->Text = film->watches.ToString();
+		FilmsList().FindFilm(film->name)->watches = film->watches;
+
+		MessageBox::Show(this, "Спасибо за просмотр!", "Ура", MessageBoxButtons::OK, MessageBoxIcon::Hand);
+
+		watchButton->Enabled = false;
+		watchButton->BackColor = System::Drawing::Color::DarkGray;
+	}
 };
 }

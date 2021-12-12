@@ -222,13 +222,14 @@ private: System::Void CloseButton_Click(System::Object^ sender, System::EventArg
 
 private: System::Void EnterButton_Click(System::Object^ sender, System::EventArgs^ e) 
 {
-	User user;
-	user.login = loginTextBox->Text;
-	user.password = PasswordTextBox->Text->GetHashCode().ToString();	
+	User^ user = gcnew User();
+	user->login = loginTextBox->Text;
+	user->password = PasswordTextBox->Text->GetHashCode().ToString();	
+	int role = 0;
 
-	if (user.AreLoginAndPasswordRight())
+	if (user->AreLoginAndPasswordRight(role))
 	{
-		HomeForm^ homeForm = gcnew HomeForm();
+		HomeForm^ homeForm = gcnew HomeForm(role);
 		homeForm->Show();
 		AuthorisationForm::Hide();
 	}

@@ -169,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="AccountsData.txt" />
+    <Text Include="FilmsData.txt" />
     <Text Include="FilmsDataOLD.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -93,5 +93,6 @@
   <ItemGroup>
     <Text Include="AccountsData.txt" />
     <Text Include="FilmsDataOLD.txt" />
+    <Text Include="FilmsData.txt" />
   </ItemGroup>
 </Project>

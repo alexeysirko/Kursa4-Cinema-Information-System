@@ -27,8 +27,7 @@ namespace Kursa4
 			List<Film^>^ films = FilmsList().GetFilmsList();
 
 			filmsListBox->DataSource = films;
-			filmsListBox->DisplayMember += "name";
-			filmsListBox->DisplayMember += "watches";
+			filmsListBox->DisplayMember = "name";
 
 			filmsListBox->SelectedIndexChanged += gcnew System::EventHandler(this, &HomeForm::filmsListBox_SelectedIndexChanged);
 			filmsListBox->BindingContext = this->BindingContext;
@@ -87,7 +86,6 @@ namespace Kursa4
 			this->filmsListBox->Name = L"filmsListBox";
 			this->filmsListBox->Size = System::Drawing::Size(647, 332);
 			this->filmsListBox->TabIndex = 1;
-			this->filmsListBox->SelectedIndexChanged += gcnew System::EventHandler(this, &HomeForm::filmsListBox_SelectedIndexChanged_1);
 			// 
 			// label1
 			// 
@@ -165,7 +163,7 @@ namespace Kursa4
 	private: System::Void AddButton_Click(System::Object^ sender, System::EventArgs^ e) 
 	{
 		AddFilmForm^ addFilmForm = gcnew AddFilmForm();
-		addFilmForm->Show();
+		addFilmForm->ShowDialog();
 	}
 };
 }

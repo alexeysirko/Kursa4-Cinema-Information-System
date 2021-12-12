@@ -4,7 +4,11 @@
 
 namespace Kursa4
 {
-	bool User::AreLoginAndPasswordRight()
+	/// <summary>
+	/// Check if Login and Password are on Users List
+	/// </summary>
+	/// <param name="role"> returning role of user with that login </param>
+	bool User::AreLoginAndPasswordRight(int& role)
 	{
 		List<User^>^ users = UsersList().GetUsersList();
 
@@ -12,6 +16,7 @@ namespace Kursa4
 		{
 			if (users[i]->login == login)
 			{
+				role = users[i]->role;
 				return users[i]->password == password ? true : false;
 			}
 		}

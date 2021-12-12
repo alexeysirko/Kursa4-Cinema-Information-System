@@ -22,10 +22,23 @@ namespace Kursa4
 				return filmsList;
 			}
 
-			static void CleaFilmsList()
+			static void ClearFilmsList()
 			{
 				filmsList->Clear();
 				filmsList = nullptr;
+			}
+
+			static Film^ FindFilm(String^ filmName)
+			{
+				for (int i = 0; i < GetFilmsList()->Count; i++)
+				{
+					if (filmsList[i]->name == filmName)
+					{
+						return filmsList[i];
+					}
+				}
+
+				return nullptr;
 			}
 	};
 }

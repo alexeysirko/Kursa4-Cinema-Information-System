@@ -148,6 +148,8 @@ namespace Kursa4
 						break;
 					}
 				}
+
+				file->Close();
 			}
 			catch (Exception^ e)
 			{
