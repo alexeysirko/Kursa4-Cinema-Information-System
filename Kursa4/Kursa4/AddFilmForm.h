@@ -23,6 +23,22 @@ namespace Kursa4
 			InitializeComponent();
 		}
 
+		/// <summary>
+		/// Edit existing film constructor
+		/// </summary>
+		AddFilmForm(Film^ film)
+		{
+			InitializeComponent();
+
+			this->film = film;
+			isEditing = true;
+
+			filmName->Text = film->name;
+			Genre->Text = film->genre;
+			Director->Text = film->director;
+			mainRole->Text = film->mainRole;
+		}
+
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -48,7 +64,8 @@ namespace Kursa4
 	private: System::Windows::Forms::Button^ SaveButton;
 	private: System::Windows::Forms::Button^ CloseButton;
 
-	private: int prevForm;
+	private: bool isEditing = false;
+	private: Film^ film;
 
 	private:
 		/// <summary>
@@ -212,17 +229,13 @@ namespace Kursa4
 			this->Name = L"AddFilmForm";
 			this->ShowIcon = false;
 			this->Text = L"AddFilmForm";
-			this->Load += gcnew System::EventHandler(this, &AddFilmForm::AddFilmForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
 	
-private: System::Void AddFilmForm_Load(System::Object^ sender, System::EventArgs^ e);
-
 private: System::Void SaveButton_Click(System::Object^ sender, System::EventArgs^ e);
-
 private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

@@ -11,6 +11,21 @@ namespace Kursa4
 		private:
 			static List<Film^>^ filmsList = nullptr;
 
+		static void RewriteInFile(String^ fileName)
+		{
+			//Creating new file for list
+			if (filmsList->Count >= 1)
+			{
+				filmsList[0]->AddInFile(fileName, false);
+			}
+
+			//Statring with 1 because first element is already added
+			for (int i = 1; i < filmsList->Count; i++)
+			{
+				filmsList[i]->AddInFile(fileName, true);
+			}
+		}
+
 		public:
 			static List<Film^>^ GetFilmsList()
 			{
@@ -39,6 +54,19 @@ namespace Kursa4
 				}
 
 				return nullptr;
+			}
+
+			static void EditFilm(String^ filmName, Film^ editedFilm)
+			{
+				for (int i = 0; i < GetFilmsList()->Count; i++)
+				{
+					if (filmsList[i]->name == filmName)
+					{
+						filmsList[i] = editedFilm;
+						RewriteInFile(Constants().FILMS_FILE);
+						return;
+					}
+				}
 			}
 	};
 }

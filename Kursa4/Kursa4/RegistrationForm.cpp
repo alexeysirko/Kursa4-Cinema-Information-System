@@ -25,7 +25,7 @@ inline System::Void Kursa4::RegistrationForm::registrationButton_Click(System::O
 		& IsPasswordCorrect(user->password))
 	{
 		SetAdminIfUsersListIsEmpty(user);
-		user->AddInFile(Constants().USERS_FILE);
+		user->AddInFile(Constants().USERS_FILE, true);
 		MessageBox::Show(this, "Вы зарегестрированы!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 
 		HomeForm^ homeForm = gcnew HomeForm(user->role);

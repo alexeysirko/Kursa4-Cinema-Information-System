@@ -156,7 +156,7 @@ namespace Kursa4 {
 			this->CloseButton->FlatAppearance->BorderColor = System::Drawing::SystemColors::ButtonShadow;
 			this->CloseButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->CloseButton->Location = System::Drawing::Point(178, 233);
+			this->CloseButton->Location = System::Drawing::Point(354, 223);
 			this->CloseButton->Name = L"CloseButton";
 			this->CloseButton->Size = System::Drawing::Size(163, 53);
 			this->CloseButton->TabIndex = 6;
@@ -170,7 +170,7 @@ namespace Kursa4 {
 			this->EntryButton->BackColor = System::Drawing::Color::Green;
 			this->EntryButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->EntryButton->Location = System::Drawing::Point(354, 233);
+			this->EntryButton->Location = System::Drawing::Point(178, 223);
 			this->EntryButton->Name = L"EntryButton";
 			this->EntryButton->Size = System::Drawing::Size(163, 53);
 			this->EntryButton->TabIndex = 7;

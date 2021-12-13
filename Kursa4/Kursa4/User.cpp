@@ -40,8 +40,8 @@ namespace Kursa4
 		return false;
 	}
 
-	void User::AddInFile(String^ fileName)
+	void User::AddInFile(String^ fileName, bool append)
 	{
-		FilesManager().WriteInFile(fileName, login + "\n" + password->GetHashCode() + "\n" + role + "\n");
+		FilesManager().WriteInFile(fileName, login + "\n" + password->GetHashCode() + "\n" + role + "\n", true);
 	}
 }

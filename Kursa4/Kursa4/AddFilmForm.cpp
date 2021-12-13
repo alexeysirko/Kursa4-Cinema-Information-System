@@ -1,14 +1,11 @@
 #include "AddFilmForm.h"
-
-inline System::Void Kursa4::AddFilmForm::AddFilmForm_Load(System::Object^ sender, System::EventArgs^ e)
-{
-	prevForm = Application::OpenForms->Count - 2;
-}
+#include "HomeForm.h"
 
 inline System::Void Kursa4::AddFilmForm::SaveButton_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	Film^ film = gcnew Film();
+	Film^ editedFilm = gcnew Film();
 
+#pragma region FilmBoxesCheck
 	if (filmName->Text == "" || filmName->Text == nullptr)
 	{
 		filmName->BackColor = System::Drawing::Color::Tomato;
@@ -17,7 +14,7 @@ inline System::Void Kursa4::AddFilmForm::SaveButton_Click(System::Object^ sender
 	else
 	{
 		filmName->BackColor = System::Drawing::Color::DarkSeaGreen;
-		film->name = filmName->Text;
+		editedFilm->name = filmName->Text;
 	}
 
 	if (Genre->Text == "" || Genre->Text == nullptr)
@@ -28,7 +25,7 @@ inline System::Void Kursa4::AddFilmForm::SaveButton_Click(System::Object^ sender
 	else
 	{
 		Genre->BackColor = System::Drawing::Color::DarkSeaGreen;
-		film->genre = Genre->Text;
+		editedFilm->genre = Genre->Text;
 	}
 
 
@@ -40,7 +37,7 @@ inline System::Void Kursa4::AddFilmForm::SaveButton_Click(System::Object^ sender
 	else
 	{
 		Director->BackColor = System::Drawing::Color::DarkSeaGreen;
-		film->director = Director->Text;
+		editedFilm->director = Director->Text;
 	}
 
 
@@ -52,22 +49,36 @@ inline System::Void Kursa4::AddFilmForm::SaveButton_Click(System::Object^ sender
 	else
 	{
 		mainRole->BackColor = System::Drawing::Color::DarkSeaGreen;
-		film->mainRole = mainRole->Text;
+		editedFilm->mainRole = mainRole->Text;
 	}
 
-	film->watches = 0;
+	editedFilm->watches = 0;
+#pragma endregion
 
-	film->AddInFile(Constants().FILMS_FILE);
-	FilmsList().GetFilmsList()->Add(film);
-	MessageBox::Show(this, "Фильм добавлен!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+	if (isEditing)
+	{	
+		FilmsList().EditFilm(film->name, editedFilm);
+		MessageBox::Show(this, "Фильм отредактирован!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+		
+		FilmForm^ ff = gcnew FilmForm(editedFilm, Constants().ADMIN_ROLE);
+		ff->Show();
+		this->Close();
+	}
+	else
+	{
+		editedFilm->AddInFile(Constants().FILMS_FILE, true);
+		FilmsList().GetFilmsList()->Add(editedFilm);
+		MessageBox::Show(this, "Фильм добавлен!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 
-	//TODO Refresh list
-	//Application::OpenForms[prevForm]->ResetBindings();
-	this->Close();
+		HomeForm^ home = gcnew HomeForm(Constants().ADMIN_ROLE);
+		home->Show();
+		this->Close();
+	}
 }
 
 inline System::Void Kursa4::AddFilmForm::CloseButton_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	Application::OpenForms[prevForm]->Show();
+	HomeForm^ home = gcnew HomeForm(Constants().ADMIN_ROLE);
+	home->Show();
 	this->Close();
 }

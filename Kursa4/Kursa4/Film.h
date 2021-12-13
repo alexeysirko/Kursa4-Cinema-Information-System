@@ -8,7 +8,7 @@ namespace Kursa4
 	ref class Film : public Models
 	{
 	public:
-		void AddInFile(String^ fileName) override;
+		void AddInFile(String^ fileName, bool append) override;
 
 		property String^ name;
 		property String^ genre;

@@ -4,8 +4,8 @@
 
 namespace Kursa4
 {
-	void Film::AddInFile(String^ fileName)
+	void Film::AddInFile(String^ fileName, bool append)
 	{
-		FilesManager().WriteInFile(fileName, name + "\n" + genre + "\n" + director + "\n" + mainRole + "\n" + watches + "\n");
+		FilesManager().WriteInFile(fileName, name + "\n" + genre + "\n" + director + "\n" + mainRole + "\n" + watches + "\n", append);
 	}
 };

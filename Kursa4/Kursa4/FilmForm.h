@@ -1,6 +1,7 @@
 #pragma once
 #include "Film.h"
 #include "FilmsList.h"
+#include "AddFilmForm.h"
 
 namespace Kursa4 
 {
@@ -18,10 +19,11 @@ namespace Kursa4
 	public ref class FilmForm : public System::Windows::Forms::Form
 	{
 	public:
-		FilmForm(Film^ film)
+		FilmForm(Film^ film, int role)
 		{
 			InitializeComponent();
 			this->film = film;
+			this->role = role;
 		}
 
 	protected:
@@ -49,7 +51,12 @@ namespace Kursa4
 	private: System::Windows::Forms::Button^ watchButton;
 
 	private: Film^ film;
+	private: int role;
 	private: System::Windows::Forms::LinkLabel^ BackLink;
+	private: System::Windows::Forms::Button^ editButton;
+
+
+
 
 	protected:
 
@@ -78,6 +85,7 @@ namespace Kursa4
 			this->Watches = (gcnew System::Windows::Forms::Label());
 			this->watchButton = (gcnew System::Windows::Forms::Button());
 			this->BackLink = (gcnew System::Windows::Forms::LinkLabel());
+			this->editButton = (gcnew System::Windows::Forms::Button());
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->FilmImage))->BeginInit();
 			this->SuspendLayout();
 			// 
@@ -219,6 +227,23 @@ namespace Kursa4
 			this->BackLink->Text = L"Назад";
 			this->BackLink->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &FilmForm::BackLink_LinkClicked);
 			// 
+			// editButton
+			// 
+			this->editButton->BackColor = System::Drawing::Color::MediumAquamarine;
+			this->editButton->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Center;
+			this->editButton->FlatStyle = System::Windows::Forms::FlatStyle::Popup;
+			this->editButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 18, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->editButton->ForeColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(64)), static_cast<System::Int32>(static_cast<System::Byte>(64)),
+				static_cast<System::Int32>(static_cast<System::Byte>(64)));
+			this->editButton->Location = System::Drawing::Point(360, 349);
+			this->editButton->Name = L"editButton";
+			this->editButton->Size = System::Drawing::Size(252, 47);
+			this->editButton->TabIndex = 12;
+			this->editButton->Text = L"Редактировать";
+			this->editButton->UseVisualStyleBackColor = false;
+			this->editButton->Click += gcnew System::EventHandler(this, &FilmForm::editButton_Click);
+			// 
 			// FilmForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -227,6 +252,7 @@ namespace Kursa4
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::None;
 			this->ClientSize = System::Drawing::Size(809, 428);
 			this->ControlBox = false;
+			this->Controls->Add(this->editButton);
 			this->Controls->Add(this->BackLink);
 			this->Controls->Add(this->watchButton);
 			this->Controls->Add(this->Watches);
@@ -258,5 +284,7 @@ private: void SetFilmParameters();
 private: System::Void WatchButton_Click(System::Object^ sender, System::EventArgs^ e);
 
 private: System::Void BackLink_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e);
+
+private: System::Void editButton_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

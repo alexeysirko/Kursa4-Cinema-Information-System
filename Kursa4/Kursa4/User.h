@@ -16,7 +16,7 @@ namespace Kursa4
 
 		bool AreLoginAndPasswordRight(int& role);
 		static bool IsLoginExist(String^ login);
-		void AddInFile(String^ fileName) override;
+		void AddInFile(String^ fileName, bool append) override;
 	};
 	
 }

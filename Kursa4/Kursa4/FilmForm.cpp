@@ -1,8 +1,14 @@
 #include "FilmForm.h"
+#include "HomeForm.h"
 
 inline System::Void Kursa4::FilmForm::FilmForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
 	SetFilmParameters();
+
+	if (role != Constants().ADMIN_ROLE)
+	{
+		editButton->Hide();
+	}
 }
 
 inline void Kursa4::FilmForm::SetFilmParameters()
@@ -16,11 +22,10 @@ inline void Kursa4::FilmForm::SetFilmParameters()
 
 inline System::Void Kursa4::FilmForm::WatchButton_Click(System::Object^ sender, System::EventArgs^ e)
 {
-	film->watches++;
-	Watches->Text = film->watches.ToString();
-	FilmsList().FindFilm(film->name)->watches = film->watches;
+	Watches->Text = (++film->watches).ToString();
+	FilmsList().EditFilm(film->name ,film);
 
-	MessageBox::Show(this, "Спасибо за просмотр!", "Ура", MessageBoxButtons::OK, MessageBoxIcon::Hand);
+	MessageBox::Show(this, "Спасибо за просмотр!", "Ура", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 
 	watchButton->Enabled = false;
 	watchButton->BackColor = System::Drawing::Color::DarkGray;
@@ -28,5 +33,14 @@ inline System::Void Kursa4::FilmForm::WatchButton_Click(System::Object^ sender, 
 
 inline System::Void Kursa4::FilmForm::BackLink_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e)
 {
+	HomeForm^ home = gcnew HomeForm(role);
+	home->Show();
+	this->Close();
+}
 
+inline System::Void Kursa4::FilmForm::editButton_Click(System::Object^ sender, System::EventArgs^ e)
+{
+	AddFilmForm^ addFilmForm = gcnew AddFilmForm(film);
+	addFilmForm->Show();
+	this->Close();
 }

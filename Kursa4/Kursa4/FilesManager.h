@@ -27,13 +27,13 @@ namespace Kursa4
 		}
 
 	public:
-		static void WriteInFile(String^ fileName, String^ text)
+		static void WriteInFile(String^ fileName, String^ text, bool append)
 		{
 			FileCheck(fileName);
 
 			try
 			{
-				StreamWriter^ file = gcnew StreamWriter(fileName, true);
+				StreamWriter^ file = gcnew StreamWriter(fileName, append);
 				file->Write(text);
 				file->Close();
 			}
