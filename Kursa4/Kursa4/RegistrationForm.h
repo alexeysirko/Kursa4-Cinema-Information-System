@@ -1,12 +1,10 @@
 #pragma once
 #include "FilesManager.h"
-#include "Constants.h"
 #include "UsersList.h"
 #include "HomeForm.h"
 
 namespace Kursa4 
 {
-
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -56,7 +54,7 @@ namespace Kursa4
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -200,9 +198,9 @@ namespace Kursa4
 			this->Controls->Add(this->RegLabel);
 			this->Name = L"RegistrationForm";
 			this->Text = L"RegistrationForm";
+			this->Load += gcnew System::EventHandler(this, &RegistrationForm::RegForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
-			this->Load += gcnew System::EventHandler(this, &Kursa4::RegistrationForm::RegForm_Load);
 
 		}
 #pragma endregion

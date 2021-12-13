@@ -1,5 +1,6 @@
 #include "HomeForm.h"
 #include "Genres.h"
+#include "Constants.h"
 
 inline System::Void Kursa4::HomeForm::HomeForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
@@ -165,6 +166,24 @@ inline System::Void Kursa4::HomeForm::fantasyCheckBox_CheckedChanged(System::Obj
 
 	SetFilmsGenres();
 	ShowFilmsList();
+}
+
+inline System::Void Kursa4::HomeForm::findButton_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	String^ searchingText = searchTextBox->Text;
+	
+	for (int i = 0; i < originalFilms->Count; i++)
+	{
+		if (originalFilms[i]->name->Contains(searchingText))
+		{
+			FilmForm^ filmForm = gcnew FilmForm(originalFilms[i], role);
+			filmForm->Show();
+			this->Close();
+			return;
+		}
+	}
+
+	MessageBox::Show(this, "Совпадений не найдено :(", "Учитывайте регистр", MessageBoxButtons::OK, MessageBoxIcon::Information);
 }
 
 

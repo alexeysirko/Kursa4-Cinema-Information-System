@@ -53,6 +53,9 @@ namespace Kursa4
 	private: System::Windows::Forms::CheckBox^ cartoonCheckBox;
 	private: System::Windows::Forms::CheckBox^ dramaCheckBox;
 	private: System::Windows::Forms::CheckBox^ comedyCheckBox;
+	private: System::Windows::Forms::TextBox^ searchTextBox;	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::Button^ findButton;
+	private: System::Windows::Forms::Label^ label4;
 
 	protected:
 
@@ -79,6 +82,9 @@ namespace Kursa4
 			this->cartoonCheckBox = (gcnew System::Windows::Forms::CheckBox());
 			this->dramaCheckBox = (gcnew System::Windows::Forms::CheckBox());
 			this->comedyCheckBox = (gcnew System::Windows::Forms::CheckBox());
+			this->searchTextBox = (gcnew System::Windows::Forms::TextBox());
+			this->findButton = (gcnew System::Windows::Forms::Button());
+			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
 			// filmsListBox
@@ -138,7 +144,7 @@ namespace Kursa4
 			this->SelectAllButton->BackColor = System::Drawing::Color::LightSteelBlue;
 			this->SelectAllButton->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->SelectAllButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
-			this->SelectAllButton->Location = System::Drawing::Point(248, 494);
+			this->SelectAllButton->Location = System::Drawing::Point(222, 494);
 			this->SelectAllButton->Name = L"SelectAllButton";
 			this->SelectAllButton->Size = System::Drawing::Size(98, 28);
 			this->SelectAllButton->TabIndex = 5;
@@ -151,7 +157,7 @@ namespace Kursa4
 			this->horrorTextBox->AutoSize = true;
 			this->horrorTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->horrorTextBox->Location = System::Drawing::Point(248, 540);
+			this->horrorTextBox->Location = System::Drawing::Point(222, 540);
 			this->horrorTextBox->Name = L"horrorTextBox";
 			this->horrorTextBox->Size = System::Drawing::Size(83, 28);
 			this->horrorTextBox->TabIndex = 6;
@@ -164,7 +170,7 @@ namespace Kursa4
 			this->fantasyCheckBox->AutoSize = true;
 			this->fantasyCheckBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->fantasyCheckBox->Location = System::Drawing::Point(372, 584);
+			this->fantasyCheckBox->Location = System::Drawing::Point(337, 584);
 			this->fantasyCheckBox->Name = L"fantasyCheckBox";
 			this->fantasyCheckBox->Size = System::Drawing::Size(94, 28);
 			this->fantasyCheckBox->TabIndex = 7;
@@ -177,7 +183,7 @@ namespace Kursa4
 			this->cartoonCheckBox->AutoSize = true;
 			this->cartoonCheckBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular,
 				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
-			this->cartoonCheckBox->Location = System::Drawing::Point(372, 540);
+			this->cartoonCheckBox->Location = System::Drawing::Point(337, 540);
 			this->cartoonCheckBox->Name = L"cartoonCheckBox";
 			this->cartoonCheckBox->Size = System::Drawing::Size(95, 28);
 			this->cartoonCheckBox->TabIndex = 8;
@@ -190,7 +196,7 @@ namespace Kursa4
 			this->dramaCheckBox->AutoSize = true;
 			this->dramaCheckBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->dramaCheckBox->Location = System::Drawing::Point(247, 584);
+			this->dramaCheckBox->Location = System::Drawing::Point(222, 584);
 			this->dramaCheckBox->Name = L"dramaCheckBox";
 			this->dramaCheckBox->Size = System::Drawing::Size(84, 28);
 			this->dramaCheckBox->TabIndex = 9;
@@ -203,13 +209,49 @@ namespace Kursa4
 			this->comedyCheckBox->AutoSize = true;
 			this->comedyCheckBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->comedyCheckBox->Location = System::Drawing::Point(372, 494);
+			this->comedyCheckBox->Location = System::Drawing::Point(337, 494);
 			this->comedyCheckBox->Name = L"comedyCheckBox";
 			this->comedyCheckBox->Size = System::Drawing::Size(100, 28);
 			this->comedyCheckBox->TabIndex = 10;
 			this->comedyCheckBox->Text = L"Comedy";
 			this->comedyCheckBox->UseVisualStyleBackColor = true;
 			this->comedyCheckBox->CheckedChanged += gcnew System::EventHandler(this, &HomeForm::comedyCheckBox_CheckedChanged);
+			// 
+			// searchTextBox
+			// 
+			this->searchTextBox->BackColor = System::Drawing::Color::LightSteelBlue;
+			this->searchTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->searchTextBox->Location = System::Drawing::Point(517, 537);
+			this->searchTextBox->Name = L"searchTextBox";
+			this->searchTextBox->Size = System::Drawing::Size(255, 31);
+			this->searchTextBox->TabIndex = 11;
+			// 
+			// findButton
+			// 
+			this->findButton->BackColor = System::Drawing::Color::LightSteelBlue;
+			this->findButton->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->findButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->findButton->Font = (gcnew System::Drawing::Font(L"Microsoft Tai Le", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->findButton->Location = System::Drawing::Point(778, 536);
+			this->findButton->Name = L"findButton";
+			this->findButton->Size = System::Drawing::Size(67, 32);
+			this->findButton->TabIndex = 13;
+			this->findButton->Text = L"Найти";
+			this->findButton->UseVisualStyleBackColor = false;
+			this->findButton->Click += gcnew System::EventHandler(this, &HomeForm::findButton_Click);
+			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->label4->Location = System::Drawing::Point(521, 509);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(207, 25);
+			this->label4->TabIndex = 14;
+			this->label4->Text = L"Поиск по названию";
 			// 
 			// HomeForm
 			// 
@@ -218,6 +260,9 @@ namespace Kursa4
 			this->BackColor = System::Drawing::SystemColors::WindowFrame;
 			this->ClientSize = System::Drawing::Size(857, 639);
 			this->ControlBox = false;
+			this->Controls->Add(this->label4);
+			this->Controls->Add(this->findButton);
+			this->Controls->Add(this->searchTextBox);
 			this->Controls->Add(this->comedyCheckBox);
 			this->Controls->Add(this->dramaCheckBox);
 			this->Controls->Add(this->cartoonCheckBox);
@@ -249,5 +294,6 @@ namespace Kursa4
 	private: System::Void cartoonCheckBox_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void dramaCheckBox_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void fantasyCheckBox_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void findButton_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }
