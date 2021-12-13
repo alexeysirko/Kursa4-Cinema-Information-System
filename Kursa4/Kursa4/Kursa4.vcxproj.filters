@@ -89,6 +89,9 @@
     <ClInclude Include="Constants.h">
       <Filter>Header Files\AppData</Filter>
     </ClInclude>
+    <ClInclude Include="Genres.h">
+      <Filter>Header Files\AppData</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Text Include="AccountsData.txt" />

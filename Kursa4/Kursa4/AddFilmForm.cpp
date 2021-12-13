@@ -1,5 +1,6 @@
 #include "AddFilmForm.h"
 #include "HomeForm.h"
+#include "Genres.h"
 
 inline System::Void Kursa4::AddFilmForm::SaveButton_Click(System::Object^ sender, System::EventArgs^ e)
 {
@@ -81,4 +82,13 @@ inline System::Void Kursa4::AddFilmForm::CloseButton_Click(System::Object^ sende
 	HomeForm^ home = gcnew HomeForm(Constants().ADMIN_ROLE);
 	home->Show();
 	this->Close();
+}
+
+inline System::Void Kursa4::AddFilmForm::AddFilmForm_Load(System::Object^ sender, System::EventArgs^ e) 
+{
+	Genre->Items->Add(Genres().HORROR);
+	Genre->Items->Add(Genres().FANTASY);
+	Genre->Items->Add(Genres().COMEDY);
+	Genre->Items->Add(Genres().CARTOON);
+	Genre->Items->Add(Genres().DRAMA);
 }

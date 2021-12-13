@@ -142,10 +142,6 @@ namespace Kursa4
 			this->Genre->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->Genre->FormattingEnabled = true;
-			this->Genre->Items->AddRange(gcnew cli::array< System::Object^  >(5) {
-				L"Хоррор", L"Фантастика", L"Комедия", L"Мультфильм",
-					L"Драма"
-			});
 			this->Genre->Location = System::Drawing::Point(32, 147);
 			this->Genre->Name = L"Genre";
 			this->Genre->Size = System::Drawing::Size(255, 32);
@@ -229,6 +225,7 @@ namespace Kursa4
 			this->Name = L"AddFilmForm";
 			this->ShowIcon = false;
 			this->Text = L"AddFilmForm";
+			this->Load += gcnew System::EventHandler(this, &AddFilmForm::AddFilmForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -237,5 +234,6 @@ namespace Kursa4
 	
 private: System::Void SaveButton_Click(System::Object^ sender, System::EventArgs^ e);
 private: System::Void CloseButton_Click(System::Object^ sender, System::EventArgs^ e);
+private: System::Void AddFilmForm_Load(System::Object^ sender, System::EventArgs^ e);
 };
 }

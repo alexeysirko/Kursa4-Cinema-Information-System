@@ -41,8 +41,18 @@ namespace Kursa4
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Button^ AddButton;
 
+
 	private: System::Windows::Forms::ListBox^ filmsListBox;
 	private: int role;
+	private: List<Film^>^ originalFilms;
+	private: List<Film^>^ filteredFilms;
+	List<String^>^ genresNames = gcnew List<String^>;
+	private: System::Windows::Forms::Button^ SelectAllButton;
+	private: System::Windows::Forms::CheckBox^ horrorTextBox;
+	private: System::Windows::Forms::CheckBox^ fantasyCheckBox;
+	private: System::Windows::Forms::CheckBox^ cartoonCheckBox;
+	private: System::Windows::Forms::CheckBox^ dramaCheckBox;
+	private: System::Windows::Forms::CheckBox^ comedyCheckBox;
 
 	protected:
 
@@ -63,6 +73,12 @@ namespace Kursa4
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->AddButton = (gcnew System::Windows::Forms::Button());
+			this->SelectAllButton = (gcnew System::Windows::Forms::Button());
+			this->horrorTextBox = (gcnew System::Windows::Forms::CheckBox());
+			this->fantasyCheckBox = (gcnew System::Windows::Forms::CheckBox());
+			this->cartoonCheckBox = (gcnew System::Windows::Forms::CheckBox());
+			this->dramaCheckBox = (gcnew System::Windows::Forms::CheckBox());
+			this->comedyCheckBox = (gcnew System::Windows::Forms::CheckBox());
 			this->SuspendLayout();
 			// 
 			// filmsListBox
@@ -70,13 +86,13 @@ namespace Kursa4
 			this->filmsListBox->BackColor = System::Drawing::SystemColors::AppWorkspace;
 			this->filmsListBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
 			this->filmsListBox->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->filmsListBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 36, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+			this->filmsListBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->filmsListBox->FormattingEnabled = true;
-			this->filmsListBox->ItemHeight = 55;
+			this->filmsListBox->ItemHeight = 31;
 			this->filmsListBox->Location = System::Drawing::Point(34, 146);
 			this->filmsListBox->Name = L"filmsListBox";
-			this->filmsListBox->Size = System::Drawing::Size(787, 332);
+			this->filmsListBox->Size = System::Drawing::Size(787, 312);
 			this->filmsListBox->TabIndex = 1;
 			// 
 			// label1
@@ -104,6 +120,7 @@ namespace Kursa4
 			// AddButton
 			// 
 			this->AddButton->BackColor = System::Drawing::Color::SandyBrown;
+			this->AddButton->Cursor = System::Windows::Forms::Cursors::Hand;
 			this->AddButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
 			this->AddButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
@@ -116,13 +133,97 @@ namespace Kursa4
 			this->AddButton->UseVisualStyleBackColor = false;
 			this->AddButton->Click += gcnew System::EventHandler(this, &HomeForm::AddButton_Click);
 			// 
+			// SelectAllButton
+			// 
+			this->SelectAllButton->BackColor = System::Drawing::Color::LightSteelBlue;
+			this->SelectAllButton->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->SelectAllButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->SelectAllButton->Location = System::Drawing::Point(248, 494);
+			this->SelectAllButton->Name = L"SelectAllButton";
+			this->SelectAllButton->Size = System::Drawing::Size(98, 28);
+			this->SelectAllButton->TabIndex = 5;
+			this->SelectAllButton->Text = L"Выбрать все";
+			this->SelectAllButton->UseVisualStyleBackColor = false;
+			this->SelectAllButton->Click += gcnew System::EventHandler(this, &HomeForm::selectAllButton_Click);
+			// 
+			// horrorTextBox
+			// 
+			this->horrorTextBox->AutoSize = true;
+			this->horrorTextBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->horrorTextBox->Location = System::Drawing::Point(248, 540);
+			this->horrorTextBox->Name = L"horrorTextBox";
+			this->horrorTextBox->Size = System::Drawing::Size(83, 28);
+			this->horrorTextBox->TabIndex = 6;
+			this->horrorTextBox->Text = L"Horror";
+			this->horrorTextBox->UseVisualStyleBackColor = true;
+			this->horrorTextBox->CheckedChanged += gcnew System::EventHandler(this, &HomeForm::horrorTextBox_CheckedChanged);
+			// 
+			// fantasyCheckBox
+			// 
+			this->fantasyCheckBox->AutoSize = true;
+			this->fantasyCheckBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->fantasyCheckBox->Location = System::Drawing::Point(372, 584);
+			this->fantasyCheckBox->Name = L"fantasyCheckBox";
+			this->fantasyCheckBox->Size = System::Drawing::Size(94, 28);
+			this->fantasyCheckBox->TabIndex = 7;
+			this->fantasyCheckBox->Text = L"Fantasy";
+			this->fantasyCheckBox->UseVisualStyleBackColor = true;
+			this->fantasyCheckBox->CheckedChanged += gcnew System::EventHandler(this, &HomeForm::fantasyCheckBox_CheckedChanged);
+			// 
+			// cartoonCheckBox
+			// 
+			this->cartoonCheckBox->AutoSize = true;
+			this->cartoonCheckBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular,
+				System::Drawing::GraphicsUnit::Point, static_cast<System::Byte>(204)));
+			this->cartoonCheckBox->Location = System::Drawing::Point(372, 540);
+			this->cartoonCheckBox->Name = L"cartoonCheckBox";
+			this->cartoonCheckBox->Size = System::Drawing::Size(95, 28);
+			this->cartoonCheckBox->TabIndex = 8;
+			this->cartoonCheckBox->Text = L"Cartoon";
+			this->cartoonCheckBox->UseVisualStyleBackColor = true;
+			this->cartoonCheckBox->CheckedChanged += gcnew System::EventHandler(this, &HomeForm::cartoonCheckBox_CheckedChanged);
+			// 
+			// dramaCheckBox
+			// 
+			this->dramaCheckBox->AutoSize = true;
+			this->dramaCheckBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->dramaCheckBox->Location = System::Drawing::Point(247, 584);
+			this->dramaCheckBox->Name = L"dramaCheckBox";
+			this->dramaCheckBox->Size = System::Drawing::Size(84, 28);
+			this->dramaCheckBox->TabIndex = 9;
+			this->dramaCheckBox->Text = L"Drama";
+			this->dramaCheckBox->UseVisualStyleBackColor = true;
+			this->dramaCheckBox->CheckedChanged += gcnew System::EventHandler(this, &HomeForm::dramaCheckBox_CheckedChanged);
+			// 
+			// comedyCheckBox
+			// 
+			this->comedyCheckBox->AutoSize = true;
+			this->comedyCheckBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->comedyCheckBox->Location = System::Drawing::Point(372, 494);
+			this->comedyCheckBox->Name = L"comedyCheckBox";
+			this->comedyCheckBox->Size = System::Drawing::Size(100, 28);
+			this->comedyCheckBox->TabIndex = 10;
+			this->comedyCheckBox->Text = L"Comedy";
+			this->comedyCheckBox->UseVisualStyleBackColor = true;
+			this->comedyCheckBox->CheckedChanged += gcnew System::EventHandler(this, &HomeForm::comedyCheckBox_CheckedChanged);
+			// 
 			// HomeForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::WindowFrame;
-			this->ClientSize = System::Drawing::Size(853, 628);
+			this->ClientSize = System::Drawing::Size(857, 639);
 			this->ControlBox = false;
+			this->Controls->Add(this->comedyCheckBox);
+			this->Controls->Add(this->dramaCheckBox);
+			this->Controls->Add(this->cartoonCheckBox);
+			this->Controls->Add(this->fantasyCheckBox);
+			this->Controls->Add(this->horrorTextBox);
+			this->Controls->Add(this->SelectAllButton);
 			this->Controls->Add(this->AddButton);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
@@ -140,5 +241,13 @@ namespace Kursa4
 	private: System::Void filmsListBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void AddButton_Click(System::Object^ sender, System::EventArgs^ e);
 	private: void ShowFilmsList();
+	private: void CheckAll();
+	private: System::Void selectAllButton_Click(System::Object^ sender, System::EventArgs^ e);
+	private: void SetFilmsGenres();
+	private: System::Void comedyCheckBox_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void horrorTextBox_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void cartoonCheckBox_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void dramaCheckBox_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void fantasyCheckBox_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 };
 }
