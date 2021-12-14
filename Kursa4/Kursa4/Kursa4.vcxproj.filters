@@ -51,6 +51,9 @@
     <ClCompile Include="AddFilmForm.cpp">
       <Filter>Source Files\FormsCpp</Filter>
     </ClCompile>
+    <ClCompile Include="UsersForm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AuthorisationForm.h">
@@ -91,6 +94,9 @@
     </ClInclude>
     <ClInclude Include="Genres.h">
       <Filter>Header Files\AppData</Filter>
+    </ClInclude>
+    <ClInclude Include="UsersForm.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

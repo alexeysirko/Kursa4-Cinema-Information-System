@@ -125,6 +125,7 @@
     <ClCompile Include="HomeForm.cpp" />
     <ClCompile Include="RegistrationForm.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="UsersForm.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AddFilmForm.h">
@@ -149,6 +150,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="User.h" />
+    <ClInclude Include="UsersForm.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="UsersList.h" />
   </ItemGroup>
   <ItemGroup>
@@ -166,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="RegistrationForm.resx">
       <DependentUpon>RegistrationForm.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersForm.resx">
+      <DependentUpon>UsersForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
