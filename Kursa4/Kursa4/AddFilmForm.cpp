@@ -58,7 +58,7 @@ inline System::Void Kursa4::AddFilmForm::SaveButton_Click(System::Object^ sender
 
 	if (isEditing)
 	{	
-		FilmsList().EditFilm(film->name, editedFilm);
+		FilmsList().EditElement(film->name, editedFilm);
 		MessageBox::Show(this, "Фильм отредактирован!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 		
 		FilmForm^ ff = gcnew FilmForm(editedFilm, Constants().ADMIN_ROLE);
@@ -68,7 +68,7 @@ inline System::Void Kursa4::AddFilmForm::SaveButton_Click(System::Object^ sender
 	else
 	{
 		editedFilm->AddInFile(Constants().FILMS_FILE, true);
-		FilmsList().GetFilmsList()->Add(editedFilm);
+		FilmsList().Get()->Add(editedFilm);
 		MessageBox::Show(this, "Фильм добавлен!", "Успех", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 
 		HomeForm^ home = gcnew HomeForm(Constants().ADMIN_ROLE);

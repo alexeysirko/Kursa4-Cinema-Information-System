@@ -10,9 +10,9 @@ namespace Kursa4
 	ref class User : public Models
 	{
 	public:
-		String^ login;
-		String^ password;
-		int role;
+		property String^ login;
+		property String^ password;
+		property int role;
 
 		bool AreLoginAndPasswordRight(int& role);
 		static bool IsLoginExist(String^ login);

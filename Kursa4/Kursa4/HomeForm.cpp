@@ -1,10 +1,11 @@
 #include "HomeForm.h"
 #include "Genres.h"
 #include "Constants.h"
+#include "UsersForm.h"
 
 inline System::Void Kursa4::HomeForm::HomeForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
-	originalFilms = FilmsList().GetFilmsList();	
+	originalFilms = FilmsList().Get();	
 
 	horrorTextBox->Text = Genres().HORROR;
 	fantasyCheckBox->Text = Genres().FANTASY;
@@ -31,7 +32,7 @@ inline System::Void Kursa4::HomeForm::filmsListBox_SelectedIndexChanged(System::
 inline System::Void Kursa4::HomeForm::AddButton_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	AddFilmForm^ addFilmForm = gcnew AddFilmForm();
-	addFilmForm->ShowDialog();
+	addFilmForm->Show();
 	this->Close();
 }
 
@@ -184,6 +185,12 @@ inline System::Void Kursa4::HomeForm::findButton_Click(System::Object^ sender, S
 	}
 
 	MessageBox::Show(this, "Совпадений не найдено :(", "Учитывайте регистр", MessageBoxButtons::OK, MessageBoxIcon::Information);
+}
+
+inline System::Void Kursa4::HomeForm::usersButton_Click(System::Object^ sender, System::EventArgs^ e) 
+{
+	UsersForm^ usersForm = gcnew UsersForm();
+	usersForm->ShowDialog();
 }
 
 

@@ -23,7 +23,7 @@ inline void Kursa4::FilmForm::SetFilmParameters()
 inline System::Void Kursa4::FilmForm::WatchButton_Click(System::Object^ sender, System::EventArgs^ e)
 {
 	Watches->Text = (++film->watches).ToString();
-	FilmsList().EditFilm(film->name ,film);
+	FilmsList().EditElement(film->name ,film);
 
 	MessageBox::Show(this, "Спасибо за просмотр!", "Ура", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
 

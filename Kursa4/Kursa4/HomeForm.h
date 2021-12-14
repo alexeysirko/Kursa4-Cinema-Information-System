@@ -56,6 +56,8 @@ namespace Kursa4
 	private: System::Windows::Forms::TextBox^ searchTextBox;	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::Button^ findButton;
 	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Button^ usersButton;
+
 
 	protected:
 
@@ -85,6 +87,7 @@ namespace Kursa4
 			this->searchTextBox = (gcnew System::Windows::Forms::TextBox());
 			this->findButton = (gcnew System::Windows::Forms::Button());
 			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->usersButton = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// filmsListBox
@@ -131,7 +134,7 @@ namespace Kursa4
 			this->AddButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
 			this->AddButton->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
-			this->AddButton->Location = System::Drawing::Point(34, 494);
+			this->AddButton->Location = System::Drawing::Point(34, 496);
 			this->AddButton->Name = L"AddButton";
 			this->AddButton->Size = System::Drawing::Size(149, 38);
 			this->AddButton->TabIndex = 3;
@@ -253,13 +256,30 @@ namespace Kursa4
 			this->label4->TabIndex = 14;
 			this->label4->Text = L"Поиск по названию";
 			// 
+			// usersButton
+			// 
+			this->usersButton->BackColor = System::Drawing::Color::Teal;
+			this->usersButton->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->usersButton->FlatStyle = System::Windows::Forms::FlatStyle::Flat;
+			this->usersButton->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(204)));
+			this->usersButton->ForeColor = System::Drawing::SystemColors::ActiveCaptionText;
+			this->usersButton->Location = System::Drawing::Point(34, 572);
+			this->usersButton->Name = L"usersButton";
+			this->usersButton->Size = System::Drawing::Size(149, 40);
+			this->usersButton->TabIndex = 15;
+			this->usersButton->Text = L"Пользователи";
+			this->usersButton->UseVisualStyleBackColor = false;
+			this->usersButton->Click += gcnew System::EventHandler(this, &HomeForm::usersButton_Click);
+			// 
 			// HomeForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::WindowFrame;
-			this->ClientSize = System::Drawing::Size(857, 639);
+			this->ClientSize = System::Drawing::Size(861, 638);
 			this->ControlBox = false;
+			this->Controls->Add(this->usersButton);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->findButton);
 			this->Controls->Add(this->searchTextBox);
@@ -295,5 +315,6 @@ namespace Kursa4
 	private: System::Void dramaCheckBox_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void fantasyCheckBox_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void findButton_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void usersButton_Click(System::Object^ sender, System::EventArgs^ e);
 };
 }

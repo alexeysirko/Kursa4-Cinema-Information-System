@@ -52,7 +52,7 @@
       <Filter>Source Files\FormsCpp</Filter>
     </ClCompile>
     <ClCompile Include="UsersForm.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\FormsCpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

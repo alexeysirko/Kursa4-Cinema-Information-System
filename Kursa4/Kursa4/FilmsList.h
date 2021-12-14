@@ -27,7 +27,7 @@ namespace Kursa4
 		}
 
 		public:
-			static List<Film^>^ GetFilmsList()
+			static List<Film^>^ Get()
 			{
 				if (filmsList == nullptr)
 				{
@@ -37,7 +37,7 @@ namespace Kursa4
 				return filmsList;
 			}
 
-			static void ClearFilmsList()
+			static void Clear()
 			{
 				filmsList->Clear();
 				filmsList = nullptr;
@@ -45,7 +45,7 @@ namespace Kursa4
 
 			static Film^ FindFilm(String^ filmName)
 			{
-				for (int i = 0; i < GetFilmsList()->Count; i++)
+				for (int i = 0; i < Get()->Count; i++)
 				{
 					if (filmsList[i]->name == filmName)
 					{
@@ -56,9 +56,9 @@ namespace Kursa4
 				return nullptr;
 			}
 
-			static void EditFilm(String^ filmName, Film^ editedFilm)
+			static void EditElement(String^ filmName, Film^ editedFilm)
 			{
-				for (int i = 0; i < GetFilmsList()->Count; i++)
+				for (int i = 0; i < Get()->Count; i++)
 				{
 					if (filmsList[i]->name == filmName)
 					{

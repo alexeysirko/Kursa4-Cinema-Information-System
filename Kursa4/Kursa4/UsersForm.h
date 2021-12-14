@@ -1,4 +1,5 @@
 #pragma once
+#include "UsersList.h"
 
 namespace Kursa4 {
 
@@ -34,12 +35,21 @@ namespace Kursa4 {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::ListBox^ filmsListBox;
-	private: System::Windows::Forms::ListBox^ listBox1;
+	private: System::Windows::Forms::ListBox^ adminsListBox;
+	private: System::Windows::Forms::ListBox^ usersListBox;
+	protected:
+
+	protected:
+
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::LinkLabel^ linkLabel1;
+	private: System::Windows::Forms::LinkLabel^ goBack;
+
 	private: System::Windows::Forms::Label^ label3;
+	
+	private: List<User^>^ adminsList = UsersList().GetAdmins();
+	private: List<User^>^ usersList = UsersList().GetUsers();
+	
 	protected:
 
 	private:
@@ -55,41 +65,44 @@ namespace Kursa4 {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->filmsListBox = (gcnew System::Windows::Forms::ListBox());
-			this->listBox1 = (gcnew System::Windows::Forms::ListBox());
+			this->adminsListBox = (gcnew System::Windows::Forms::ListBox());
+			this->usersListBox = (gcnew System::Windows::Forms::ListBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->linkLabel1 = (gcnew System::Windows::Forms::LinkLabel());
+			this->goBack = (gcnew System::Windows::Forms::LinkLabel());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
-			// filmsListBox
+			// adminsListBox
 			// 
-			this->filmsListBox->BackColor = System::Drawing::SystemColors::AppWorkspace;
-			this->filmsListBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->filmsListBox->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->filmsListBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+			this->adminsListBox->BackColor = System::Drawing::SystemColors::AppWorkspace;
+			this->adminsListBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->adminsListBox->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->adminsListBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->filmsListBox->FormattingEnabled = true;
-			this->filmsListBox->ItemHeight = 31;
-			this->filmsListBox->Location = System::Drawing::Point(93, 82);
-			this->filmsListBox->Name = L"filmsListBox";
-			this->filmsListBox->Size = System::Drawing::Size(184, 343);
-			this->filmsListBox->TabIndex = 2;
+			this->adminsListBox->FormattingEnabled = true;
+			this->adminsListBox->ItemHeight = 31;
+			this->adminsListBox->Location = System::Drawing::Point(93, 82);
+			this->adminsListBox->Name = L"adminsListBox";
+			this->adminsListBox->Size = System::Drawing::Size(184, 343);
+			this->adminsListBox->Sorted = true;
+			this->adminsListBox->TabIndex = 2;
+			this->adminsListBox->SelectedIndexChanged += gcnew System::EventHandler(this, &UsersForm::adminsListBox_SelectedIndexChanged);
 			// 
-			// listBox1
+			// usersListBox
 			// 
-			this->listBox1->BackColor = System::Drawing::SystemColors::AppWorkspace;
-			this->listBox1->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
-			this->listBox1->Cursor = System::Windows::Forms::Cursors::Hand;
-			this->listBox1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
+			this->usersListBox->BackColor = System::Drawing::SystemColors::AppWorkspace;
+			this->usersListBox->BorderStyle = System::Windows::Forms::BorderStyle::FixedSingle;
+			this->usersListBox->Cursor = System::Windows::Forms::Cursors::Hand;
+			this->usersListBox->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20.25F, System::Drawing::FontStyle::Italic, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->listBox1->FormattingEnabled = true;
-			this->listBox1->ItemHeight = 31;
-			this->listBox1->Location = System::Drawing::Point(354, 82);
-			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(184, 343);
-			this->listBox1->TabIndex = 3;
+			this->usersListBox->FormattingEnabled = true;
+			this->usersListBox->ItemHeight = 31;
+			this->usersListBox->Location = System::Drawing::Point(354, 82);
+			this->usersListBox->Name = L"usersListBox";
+			this->usersListBox->Size = System::Drawing::Size(184, 343);
+			this->usersListBox->TabIndex = 3;
+			this->usersListBox->SelectedIndexChanged += gcnew System::EventHandler(this, &UsersForm::usersListBox_SelectedIndexChanged);
 			// 
 			// label2
 			// 
@@ -113,17 +126,18 @@ namespace Kursa4 {
 			this->label1->TabIndex = 5;
 			this->label1->Text = L"Пользователи";
 			// 
-			// linkLabel1
+			// goBack
 			// 
-			this->linkLabel1->AutoSize = true;
-			this->linkLabel1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->goBack->AutoSize = true;
+			this->goBack->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 11.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->linkLabel1->Location = System::Drawing::Point(13, 13);
-			this->linkLabel1->Name = L"linkLabel1";
-			this->linkLabel1->Size = System::Drawing::Size(52, 18);
-			this->linkLabel1->TabIndex = 6;
-			this->linkLabel1->TabStop = true;
-			this->linkLabel1->Text = L"Назад";
+			this->goBack->Location = System::Drawing::Point(13, 13);
+			this->goBack->Name = L"goBack";
+			this->goBack->Size = System::Drawing::Size(52, 18);
+			this->goBack->TabIndex = 6;
+			this->goBack->TabStop = true;
+			this->goBack->Text = L"Назад";
+			this->goBack->LinkClicked += gcnew System::Windows::Forms::LinkLabelLinkClickedEventHandler(this, &UsersForm::goBack_LinkClicked);
 			// 
 			// label3
 			// 
@@ -141,17 +155,30 @@ namespace Kursa4 {
 			this->BackColor = System::Drawing::SystemColors::WindowFrame;
 			this->ClientSize = System::Drawing::Size(645, 498);
 			this->Controls->Add(this->label3);
-			this->Controls->Add(this->linkLabel1);
+			this->Controls->Add(this->goBack);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->label2);
-			this->Controls->Add(this->listBox1);
-			this->Controls->Add(this->filmsListBox);
+			this->Controls->Add(this->usersListBox);
+			this->Controls->Add(this->adminsListBox);
 			this->Name = L"UsersForm";
 			this->Text = L"UsersForm";
+			this->Load += gcnew System::EventHandler(this, &UsersForm::UsersForm_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	};
+
+	private: System::Void UsersForm_Load(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void adminsListBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e);
+
+	private: System::Void usersListBox_SelectedIndexChanged(System::Object^ sender, System::EventArgs^ e);
+
+	private: void ShowAdmins();
+
+	private: void ShowUsers();
+	
+	private: System::Void goBack_LinkClicked(System::Object^ sender, System::Windows::Forms::LinkLabelLinkClickedEventArgs^ e);
+};
 }

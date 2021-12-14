@@ -10,7 +10,7 @@ namespace Kursa4
 	/// <param name="role"> returning role of user with that login </param>
 	bool User::AreLoginAndPasswordRight(int& role)
 	{
-		List<User^>^ users = UsersList().GetUsersList();
+		List<User^>^ users = UsersList().Get();
 
 		for (int i = 0; i < users->Count; i++)
 		{
@@ -26,7 +26,7 @@ namespace Kursa4
 
 	bool User::IsLoginExist(String^ login)
 	{
-		List<User^>^ users = UsersList().GetUsersList();
+		List<User^>^ users = UsersList().Get();
 
 		for (int i = 0; i < users->Count; i++)
 		{
@@ -42,6 +42,6 @@ namespace Kursa4
 
 	void User::AddInFile(String^ fileName, bool append)
 	{
-		FilesManager().WriteInFile(fileName, login + "\n" + password->GetHashCode() + "\n" + role + "\n", true);
+		FilesManager().WriteInFile(fileName, login + "\n" + password + "\n" + role + "\n", append);
 	}
 }

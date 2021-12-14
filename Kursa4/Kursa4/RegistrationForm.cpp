@@ -16,7 +16,7 @@ inline System::Void Kursa4::RegistrationForm::registrationButton_Click(System::O
 {
 	User^ user = gcnew User();
 	user->login = loginTextBox->Text;
-	user->password = passwordTextBox->Text;
+	user->password = passwordTextBox->Text->GetHashCode().ToString();
 	user->role = Constants().USER_ROLE;
 	String^ repeatedPassword = repeatPasswordTextBox->Text;
 
@@ -65,7 +65,7 @@ inline bool Kursa4::RegistrationForm::ArePasswordsEqual(String^ str1, String^ st
 
 inline void Kursa4::RegistrationForm::SetAdminIfUsersListIsEmpty(User^ user)
 {
-	List<User^>^ users = UsersList().GetUsersList();
+	List<User^>^ users = UsersList().Get();
 	if (users == nullptr || users->Count == 0)
 	{
 		user->role = Constants().ADMIN_ROLE;
