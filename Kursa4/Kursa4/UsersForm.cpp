@@ -2,6 +2,7 @@
 
 inline System::Void Kursa4::UsersForm::UsersForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
+	usersList->Clear();
 	ShowAdmins();
 	ShowUsers();
 }

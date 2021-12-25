@@ -5,6 +5,7 @@
 
 inline System::Void Kursa4::HomeForm::HomeForm_Load(System::Object^ sender, System::EventArgs^ e)
 {
+	FilmsList().Clear();
 	originalFilms = FilmsList().Get();	
 
 	horrorTextBox->Text = Genres().HORROR;
@@ -17,6 +18,7 @@ inline System::Void Kursa4::HomeForm::HomeForm_Load(System::Object^ sender, Syst
 	if (role != Constants().ADMIN_ROLE)
 	{
 		AddButton->Hide();
+		usersButton->Hide();
 	}
 }
 

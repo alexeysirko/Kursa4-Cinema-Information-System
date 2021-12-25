@@ -57,6 +57,7 @@ namespace Kursa4
 	private: System::Windows::Forms::Button^ findButton;
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Button^ usersButton;
+	private: System::Windows::Forms::Button^ button1;
 
 
 	protected:
@@ -88,6 +89,7 @@ namespace Kursa4
 			this->findButton = (gcnew System::Windows::Forms::Button());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->usersButton = (gcnew System::Windows::Forms::Button());
+			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// filmsListBox
@@ -272,6 +274,18 @@ namespace Kursa4
 			this->usersButton->UseVisualStyleBackColor = false;
 			this->usersButton->Click += gcnew System::EventHandler(this, &HomeForm::usersButton_Click);
 			// 
+			// button1
+			// 
+			this->button1->BackColor = System::Drawing::Color::DarkRed;
+			this->button1->Cursor = System::Windows::Forms::Cursors::No;
+			this->button1->Location = System::Drawing::Point(818, 12);
+			this->button1->Name = L"button1";
+			this->button1->Size = System::Drawing::Size(31, 29);
+			this->button1->TabIndex = 16;
+			this->button1->Text = L"X";
+			this->button1->UseVisualStyleBackColor = false;
+			this->button1->Click += gcnew System::EventHandler(this, &HomeForm::button1_Click);
+			// 
 			// HomeForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -279,6 +293,7 @@ namespace Kursa4
 			this->BackColor = System::Drawing::SystemColors::WindowFrame;
 			this->ClientSize = System::Drawing::Size(861, 638);
 			this->ControlBox = false;
+			this->Controls->Add(this->button1);
 			this->Controls->Add(this->usersButton);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->findButton);
@@ -316,5 +331,9 @@ namespace Kursa4
 	private: System::Void fantasyCheckBox_CheckedChanged(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void findButton_Click(System::Object^ sender, System::EventArgs^ e);
 	private: System::Void usersButton_Click(System::Object^ sender, System::EventArgs^ e);
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) 
+	{
+		Application::Exit();
+	}
 };
 }

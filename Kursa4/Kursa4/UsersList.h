@@ -27,8 +27,11 @@ namespace Kursa4
 
 		static void Clear()
 		{
-			usersList->Clear();
-			usersList = nullptr;
+			if (usersList)
+			{
+				usersList->Clear();
+				usersList = nullptr;
+			}
 		}
 
 		static void EditElement(String^ userName, int role)

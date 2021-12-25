@@ -18,7 +18,7 @@ inline System::Void Kursa4::RegistrationForm::registrationButton_Click(System::O
 	user->login = loginTextBox->Text;
 	user->password = passwordTextBox->Text->GetHashCode().ToString();
 	user->role = Constants().USER_ROLE;
-	String^ repeatedPassword = repeatPasswordTextBox->Text;
+	String^ repeatedPassword = repeatPasswordTextBox->Text->GetHashCode().ToString();
 
 	if (!User().IsLoginExist(user->login)
 		& ArePasswordsEqual(user->password, repeatedPassword)

@@ -39,8 +39,11 @@ namespace Kursa4
 
 			static void Clear()
 			{
-				filmsList->Clear();
-				filmsList = nullptr;
+				if (filmsList)
+				{
+					filmsList->Clear();
+					filmsList = nullptr;
+				}
 			}
 
 			static Film^ FindFilm(String^ filmName)
