@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\MyClasses">
+      <UniqueIdentifier>{ea585766-273b-4192-9a5b-83aac599adc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FormsCpp">
+      <UniqueIdentifier>{86d1e725-9f9c-471f-b37f-0cc307c06474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utils">
+      <UniqueIdentifier>{90009ee3-21a3-4545-af90-a8dfb4bff5a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Models">
+      <UniqueIdentifier>{cc2d793b-2309-42f8-a6b8-61b7e8789b20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\AppData">
+      <UniqueIdentifier>{ab748f0f-741a-45a7-87d9-14007522ddd3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AuthorisationForm.cpp">
+      <Filter>Source Files\FormsCpp</Filter>
+    </ClCompile>
+    <ClCompile Include="RegistrationForm.cpp">
+      <Filter>Source Files\FormsCpp</Filter>
+    </ClCompile>
+    <ClCompile Include="User.cpp">
+      <Filter>Source Files\MyClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="HomeForm.cpp">
+      <Filter>Source Files\FormsCpp</Filter>
+    </ClCompile>
+    <ClCompile Include="FilmForm.cpp">
+      <Filter>Source Files\FormsCpp</Filter>
+    </ClCompile>
+    <ClCompile Include="Film.cpp">
+      <Filter>Source Files\MyClasses</Filter>
+    </ClCompile>
+    <ClCompile Include="AddFilmForm.cpp">
+      <Filter>Source Files\FormsCpp</Filter>
+    </ClCompile>
+    <ClCompile Include="UsersForm.cpp">
+      <Filter>Source Files\FormsCpp</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AuthorisationForm.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HomeForm.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RegistrationForm.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FilmForm.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FilesManager.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Film.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="FilmsList.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="User.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="UsersList.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Models.h">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="AddFilmForm.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Header Files\AppData</Filter>
+    </ClInclude>
+    <ClInclude Include="Genres.h">
+      <Filter>Header Files\AppData</Filter>
+    </ClInclude>
+    <ClInclude Include="UsersForm.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="AccountsData.txt" />
+    <Text Include="FilmsData.txt" />
+  </ItemGroup>
+</Project>
